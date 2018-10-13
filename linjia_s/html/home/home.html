@@ -474,8 +474,13 @@
 				}
 				$(".content_shows").html(friends);
 				$(".content_shows").on("click",".friend",function(){
+					var userid = JSON.parse(localStorage.getItem('userId'));
 					var sdd=$(this).data("study");
+					if(sdd==undefined||sdd==""){
+						sdd=userid.userId;
+					}
 					localStorage.setItem('study',JSON.stringify(sdd));
+					console.log(sdd);
 					window.location.href="../content/study.html";
 				})
 				$("#foun").click(function(){//好友书房列表
