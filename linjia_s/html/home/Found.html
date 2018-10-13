@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>位置</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.9&key=311194415586a84a3dab215eec8b10bb"></script>
+	</head>
+	<style type="text/css">
+		header{
+			height:2rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #ffffff;
+			box-shadow: 0rem 0rem 0.5rem 0rem rgba(164, 164, 164, 0.23);
+		}
+		header>input{
+			width: 90%;
+			padding:0.3rem 0 0.2rem 0;
+			background-color: #f1f0f0;
+			border-radius: 0.213rem;;
+			text-align: center;
+			border:none;
+			outline:none;
+			color: #999999;
+		}
+		header>input::-webkit-input-placeholder{
+			font-size: 0.512rem;
+		}
+		#myform {
+		  width:90%;
+		  font-size:1rem;
+		}
+		#myform > input {
+			width:100%;
+			padding:0.3rem 0 0.2rem 0;
+			background-color: #f1f0f0;
+			border-radius: 0.213rem;;
+			text-align: center;
+			border:none;
+			outline:none;
+			color: #999999;
+		}
+		#myform > input[type=search]::-webkit-search-cancel-button {
+		  -webkit-appearance: none;
+		}
+		.fou_op{
+			width:100%;
+			height:2rem;
+			position: absolute;
+			top:2rem;
+			left:0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.64rem;
+			margin:0.2rem 0;
+			background-color: #ffffff;
+			box-shadow: 0rem 0rem 1rem 0rem rgba(164, 164, 164, 0.21);
+		}
+		.fou_op>div{
+			width:50%;
+			text-align: center;
+			color: #999999;
+		}
+		.fou_op>div:nth-child(1){
+			color:#607CF4;
+			border-right:0.15rem solid #c9c9c9;
+		}
+		section{
+			top:4rem;
+			bottom:2.5rem;
+		}
+		.fou_tab{
+			width:100%;
+		}
+		.fou_rm{
+			box-sizing: border-box;
+			width:90%;
+			margin:0.5rem auto;
+			padding:0.2rem 1rem;
+			display: flex;
+			justify-content: space-between;
+			background-color: #ffffff;
+			box-shadow: 0rem 0rem 1rem 0rem rgba(164, 164, 164, 0.21);
+			border-radius:3rem;
+		}
+		.fou_rm>div:nth-child(2){
+			display: flex;
+			align-items: center;
+		}
+		.fou_rm>div:nth-child(2)>span{
+			padding:0.2rem 0.5rem;
+			font-size: 0.512rem;
+			background-color: #607cf4;
+			box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(96, 124, 244, 0.41);
+			border-radius: 0.48rem;
+			color: #ffffff;
+		}
+		.fou_rm>div:nth-child(1)>div{
+			font-size:0.5rem;
+		}
+		.fou_rm>div:nth-child(1)>div>span{
+			color: #999999;
+			font:500 0.384rem SimHei;
+			margin-left:0.2rem;
+		}
+		.fou_rm>div:nth-child(1)>p:nth-child(1){
+			height:100%;
+			display: flex;
+			align-items: center;
+			color: #333333;
+			font-size:0.7rem;
+		}
+		#Found{
+			color:blue;
+		}
+		.icon-faxian1{
+			color:red;
+		}
+		#loading{
+			width:100%;
+			height:100%;
+			background:gainsboro;
+			opacity:0.6;
+			position: fixed;
+			top:0;
+			left:0;
+			z-index: 999;
+		}
+	</style>
+	<body>
+		<div id="loading"></div>
+		<header>
+			<form action="" id="myform">
+				<input type="search" id="inpts" value="" placeholder="搜附近书店" autofocus="autofocus"/>
+			</form>
+		</header>
+		<div class="fou_op">
+			<div>好友书房</div>
+			<div>附近书房</div>
+		</div>
+		<section>
+			<div>
+				<div class="fou_tab">
+					<div class="fou_rm">
+						<div>
+							<p>雅阁书房</p>
+						</div>
+						<div id="study" class=""study>
+							<span>进入书房</span>
+						</div>
+					</div>
+				</div>
+				<div class="fou_tab"></div>
+			</div>
+		</section>
+		<footer class="footer_menu">
+			<div id="home" class="iconfont  icon-shouye1">
+				<span>首页</span>
+			</div>
+			<div id="community" class="iconfont  icon-iconfontdongtai">
+				<span>社区</span>
+			</div>
+			<div id="Found" class="iconfont  icon-wodedizhi">
+				<span>位置</span>
+			</div>
+			<div id="my" class="iconfont  icon-wode2">
+				<span>我的</span>
+			</div>
+		</footer>
+		
+<script type="text/javascript">
+	$(function(){
+		$(document).ready(function(){
+			$("#loading").load("../loading.html");
+		})
+		var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
+		var index=0,borrow='',bs='';
+		$(".fou_tab").eq(1).hide();
+		var transfer={
+			token:userid.token,
+			userId:userid.phone//手机号获取好友列表
+		}
+//好友书房
+		ajaxGet( "wangyi/friendsList",'get',transfer,function(data){
+			$("#loading").hide();
+			console.log(data);
+			for(i in data){
+				borrow+='<div class="fou_rm" data-study='+data[i].id+'>'
+							+'<div>'
+								+'<p>'+data[i].name+'</p>'
+							+'</div>'
+							+'<div id="study" class=""study>'
+								+'<span>进入书房</span>'
+							+'</div>'
+						+'</div>';
+			}
+			$(".fou_tab").eq(0).html(borrow);
+			$(".fou_tab").eq(0).on("click",".fou_rm",function(){
+				var sdd=$(this).data("study");
+				localStorage.setItem('study',JSON.stringify(sdd));
+				window.location.href="../content/study.html";
+			})
+		},function(err){
+			console.log(err);
+		})
+//定位
+	    var jwd=JSON.parse(localStorage.getItem('jwd'));//经纬度
+	    if(jwd==null){
+		   	var map, geolocation;
+			var longitude="";//经度
+			var latitude="";//纬度
+		    map = new AMap.Map('container',{//加载地图，调用浏览器定位服务
+		        resizeEnable:true
+		    });
+		    map.plugin('AMap.Geolocation', function(){
+		        geolocation = new AMap.Geolocation({
+		            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+		            timeout:5000,          //超过5秒后停止定位，默认：无穷大
+		            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+		            zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+		            buttonPosition:'RB'
+		        });
+		        map.addControl(geolocation);
+		        geolocation.getCurrentPosition();
+		        
+		        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+		        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+		    });
+		    function onComplete(data) {//解析定位结果
+		    	longitude=data.position.getLng();//经度
+		    	latitude=data.position.getLat();//纬度
+		    	jwd=longitude+","+latitude;//经纬度
+		    	localStorage.setItem('jwd', JSON.stringify(jwd));
+		    	near(jwd);
+		    }
+		    function onError(data){//解析定位错误信息
+		    	console.log("定位失败！");
+		    	jwd="113.734202,34.749687";//固定经纬度
+		    	near(jwd);
+		    }
+	    }else{
+	    	near(jwd);
+	    }
+//附近书房
+		function near(){
+			var can={
+				token:userid.token,
+				coordinate:jwd,
+			}
+			ajaxGet( "comment/findNearbyList",'post',can,function(data){
+				console.log(data);
+				for(i in data){
+					bs+='<div class="fou_rm" data-nearbyid="'+data[i].url+'">'
+								+'<div>'
+									+'<p class="names">'+data[i].title+'</p>'
+								+'</div>'
+								+'<div id="study" class=""study>'
+									+'<span>进入书房</span>'
+								+'</div>'
+							+'</div>';
+				}
+				$(".fou_tab").eq(1).html(bs);
+			},function(err){
+				console.log(err);
+			})
+		}
+//搜索附近书房
+		$('#myform').on('keypress', function (e){
+		    var keycode = e.keyCode;
+		　　//keycode是键码，13也是电脑物理键盘的 enter 
+		    if(keycode == '13') {
+		    	e.preventDefault();
+		    	var sd=$("#inpts").val();
+		    	var kts=$(".fou_tab").eq(1).find('p:contains('+ sd +')').closest(".fou_rm");
+		    	index=1;
+		    	ghk(index);
+		    	$(".fou_tab").eq(1).html(kts);
+		    }
+		});
+		$(".fou_tab").eq(1).on("click",".fou_rm",function(){
+			var sdd=$(this).data("nearbyid");
+			localStorage.setItem('study',JSON.stringify(sdd));
+			window.location.href="../content/study.html";
+			console.log(sdd);
+		})
+		$(".fou_op>div").click(function(){
+			index=$(this).index();
+			ghk(index);
+		})
+		function ghk(index){
+			$(".fou_op>div").eq(index).css("color","#607CF4").siblings().css("color","#999999");
+		  	$(".fou_tab").eq(index).show().siblings().hide();
+		}
+	    var mHeight = $(document).height();
+	    $(window).resize(function () {//对浏览器窗口调整大小进行显示隐藏
+	        if($(document).height() < mHeight){
+	            $(".footer_menu").hide();
+	            $("section").css({"bottom":0});
+	        }else{
+	            $(".footer_menu").show();
+	            $("section").css({"bottom":"2.5rem"});
+	        }
+	    });
+	})
+	$("#home").click(function(){
+	  	window.location.href="home.html";
+	 })
+	$("#community").click(function(){
+	  	window.location.href="community.html";
+	})
+	
+	$("#study").click(function(){
+	  	window.location.href="../content/study.html";
+	})
+	$("#my").click(function(){
+	  	window.location.href="my.html";
+	})
+</script>
+	</body>
+</html>

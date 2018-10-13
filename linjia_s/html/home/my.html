@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		header {
+		  height:5rem;
+		  background: #607cf4;
+		}
+		header > .icon-shezhi {
+		  color: white;
+		  font-size: 1.2rem;
+		  float: right;
+		  margin:0.8rem;
+		}
+		section::-webkit-scrollbar {/*隐藏滚动条*/
+			width: 0 !important;
+		}
+		.my_pos {
+		  box-sizing: border-box;
+		  width: 90%;
+		  margin: 0 auto;
+		  display: flex;
+		  justify-content: space-between;
+		  background-color: #ffffff;
+		  box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(173, 173, 173, 0.22);
+		  border-radius: 0.213rem;
+		  position: absolute;
+		  top: 3rem;
+		  left: 5%;
+		  padding: 0.2rem 0.5rem;
+		}
+		.my_pos > div:nth-child(1) {
+		  width: 80%;
+		  display: flex;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(1) {
+			box-sizing: border-box;
+		  	width:3rem;
+		  	height:3rem;
+		  	display: flex;
+		  	justify-content: center;
+		  	align-items: center;
+		  	border-radius: 50%;
+		  	box-shadow: 0rem 0rem 0.6rem 0rem rgba(173, 173, 173, 0.2);
+		  	overflow: hidden;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(1) > img {
+		  	width: 100%;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(2) {
+		  width: 60%;
+		  margin-left:1rem;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(2) > p:nth-child(1) {
+		  font: 500 0.64rem AdobeHeitiStd-Regular;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(2) > p:nth-child(1) > span {
+		  color: #333333;
+		  font: 500 0.512rem AdobeHeitiStd-Regular;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(2) > p:nth-child(2){
+		  font-size:0.64rem;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(2) > p:nth-child(2) > i {
+		  font-size:0.64rem;
+		  margin-left:0.2rem;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(2) > p:nth-child(3) {
+		  color: #666666;
+		  font-size:0.64rem;
+		}
+		.my_pos > div:nth-child(1) > div:nth-child(2) > p:nth-child(3) > span:nth-child(2) {
+		  margin-left:0.5rem;
+		}
+		.icon-xiazai48 {
+		  font-size:1rem;
+		  margin: 0.5rem 1rem;
+		}
+		section {
+		  top: 6.6rem;
+		  bottom:2.5rem;
+		}
+		section>div{
+			padding-bottom:0.3rem;
+		}
+		.lie {
+		  width: 90%;
+		  margin: 0 auto;
+		}
+		.lie > li {
+		  display: flex;
+		  justify-content: space-between;
+		  align-items: center;
+		  margin: 0.3rem auto 0;
+		  background-color: #ffffff;
+		  box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(173, 173, 173, 0.22);
+		  border-radius: 0.213rem;
+		}
+		.lie > li > div:nth-child(1) {
+		  display: flex;
+		  align-items: center;
+		  padding: 0.5rem;
+		}
+		.lie > li > div:nth-child(1) > div:nth-child(1) {
+		  width:1.3rem;
+		}
+		.lie > li > div:nth-child(1) > div:nth-child(1) > img {
+		  width: 100%;
+		}
+		.lie > li > div:nth-child(1) > div:nth-child(2) {
+		  margin-left: 2rem;
+		  color: #333333;
+		  font-size:0.64rem;
+		}
+		.lie > li > div:nth-child(2) {
+		  margin-right: 1rem;
+		  font-size:0.64rem;
+		}
+		.footer_menu>div:nth-child(5)>span {
+			color: #607cf4;
+		}
+		#my {
+			color: blue;
+		}
+	</style>
+
+	<body>
+		<header>
+			<div class="iconfont icon-shezhi"></div>
+			<div class="my_pos">
+				<div id="datas">
+					<div>
+						<img src="../../img/com_03.png" alt="" />
+					</div>
+					<div>
+						<p>id:<span>666</span></p>
+						<p>
+							<span>小黄</span>
+							<i class="iconfont gender"></i>
+						</p>
+						<p><span>22岁</span><span>打劫</span></p>
+					</div>
+				</div>
+				<div id="personal" class="iconfont icon-xiazai48"></div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<ul class="lie">
+					<li id="my_study">
+						<div>
+							<div>
+								<img src="../../img/my_03.png" />
+							</div>
+							<div>我的书房</div>
+						</div>
+						<div class="iconfont icon-qianjin"></div>
+					</li>
+					<li id="my_wallet">
+						<div>
+							<div>
+								<img src="../../img/my_04.png" />
+							</div>
+							<div>我的钱包</div>
+						</div>
+						<div class="iconfont icon-qianjin"></div>
+					</li>
+					<li id="my_bor">
+						<div>
+							<div>
+								<img src="../../img/my_05.png" />
+							</div>
+							<div>我的借阅</div>
+						</div>
+						<div class="iconfont icon-qianjin"></div>
+					</li>
+					<li id="my_collection">
+						<div>
+							<div>
+								<img src="../../img/my_06.png" />
+							</div>
+							<div>我的收藏</div>
+						</div>
+						<div class="iconfont icon-qianjin"></div>
+					</li>
+					<li id="my_fri">
+						<div>
+							<div>
+								<img src="../../img/my_07.png" />
+							</div>
+							<div>我的好友</div>
+						</div>
+						<div class="iconfont icon-qianjin"></div>
+					</li>
+					<li id="my_tips">
+						<div>
+							<div>
+								<img src="../../img/my_08.png" />
+							</div>
+							<div>我的心得</div>
+						</div>
+						<div class="iconfont icon-qianjin"></div>
+					</li>
+					<li id="order">
+						<div>
+							<div>
+								<img src="../../img/my_09.png" />
+							</div>
+							<div>我的订单</div>
+						</div>
+						<div class="iconfont icon-qianjin"></div>
+					</li>
+					<li id="donation">
+						<div>
+							<div>
+								<img src="../../img/my_10.png" />
+							</div>
+							<div>我的捐赠</div>
+						</div>
+						<div class="iconfont icon-qianjin"></div>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<footer class="footer_menu">
+			<div id="home" class="iconfont  icon-shouye1">
+				<span>首页</span>
+			</div>
+			<div id="community" class="iconfont  icon-iconfontdongtai">
+				<span>社区</span>
+			</div>
+			<div id="Found" class="iconfont  icon-wodedizhi">
+				<span>位置</span>
+			</div>
+			<div id="my" class="iconfont  icon-wode2">
+				<span>我的</span>
+			</div>
+		</footer>
+		<script type="text/javascript">
+			$(function() {
+				var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
+				ajaxGet("user/token/"+userid.token+"?token="+userid.token, 'get',{}, function(data) {
+					var data = data.data;
+					var sdk='<div>'
+								+'<img src="'+data.user.image+'" alt="" />'
+							+'</div>'
+							+'<div>'
+								+'<p>id:<span>'+data.user.id+'</span></p>'
+								+'<p>'
+									+'<span>'+data.user.nickname+'</span>'
+									+'<i class="iconfont gender"></i>'
+								+'</p>'
+								+'<p><span>'+data.user.age+'岁</span><span>'+data.user.profession+'</span></p>'
+							+'</div>';
+					$("#datas").html(sdk);
+					if(data.gender == "女") {
+						$(".gender").addClass("icon-nv").css({
+							"color": "red"
+						});
+					} else {
+						$(".gender").addClass("icon-nan").css({
+							"color": "blue"
+						});
+					}
+				}, function(err) {
+					console.log(err);
+				})
+//图片加载失败时，动态添加也包含在内
+	document.addEventListener("error", function (e) {
+	  var elem = e.target;
+	  if (elem.tagName.toLowerCase() == 'img') {
+	    elem.src = "../../img/home_01.png";
+	  }
+	}, true);
+				$("#home").on("click", function() {
+					window.location.href = "home.html";
+				})
+				$("#community").on("click", function() {
+					window.location.href = "community.html";
+				})
+				$("#Found").on("click", function() {
+					window.location.href = "Found.html";
+				})
+				$("#my").on("click", function() {
+					window.location.href = "my.html";
+				})
+				$(".icon-shezhi").on("click", function() {
+					window.location.href = "../my/cancellation.html";
+				})
+				$("#my_study").on("click", function() {//我的书房
+					localStorage.setItem('study', JSON.stringify(userid.userId));
+					window.location.href="../content/study.html";
+				})
+				$("#my_wallet").on("click", function() {//钱包
+					window.location.href = "../my/my_wallet.html";
+				})
+				$("#my_bor").on("click", function() {//借阅
+					window.location.href = "../my/borrowing.html";
+				})
+				$("#my_collection").on("click", function() {
+					window.location.href = "../my/collection.html";
+				})
+				$("#my_fri").on("click", function() {//我的好友
+					window.location.href = "../my/my_friends.html";
+				})
+				$("#my_tips").on("click", function() {//我的心得
+					window.location.href = "../content/tips.html";
+				})
+				$("#order").on("click", function() {//订单
+					window.location.href = "../my/order.html";
+				})
+				$("#personal").on("click", function() {//完善个人信息
+					window.location.href = "../my/personal.html";
+				})
+				$("#donation").click(function(){//捐赠
+				  	window.location.href="../content/donation.html";
+				})
+			})
+		</script>
+
+	</body>
+
+</html>

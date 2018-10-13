@@ -1,0 +1,70 @@
+/*<xx     */
+* {
+	margin:0;
+	padding: 0;
+}
+html, body {
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.headers{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.headers > div{
+	width:95%;
+	margin:0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.headers > div> div{
+	height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	font:500 0.768rem AdobeHeitiStd-Regular;
+}
+.headers > div > div:nth-child(1) > span {
+  	margin-left: 0.5rem;
+}
+section {
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+    left:0;
+}
+section > div{
+    width: 100%;
+}
+footer{
+	width:100%;
+	position: absolute;
+	left:0;
+	bottom:0;
+}
+.footer_menu{
+	box-sizing: border-box;
+	padding-bottom:0.05rem;
+	height: 2.5rem;
+	display: flex;
+	justify-content: space-around;
+	background: white;
+	box-shadow: 0rem 0rem 0.5rem 0rem rgba(164, 164, 164, 0.33);
+}
+.footer_menu>div{
+	width:20%;
+	text-align:center;
+	font:500 1.3rem AdobeHeitiStd-Regular;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.footer_menu>div>span{
+	font:500 0.6rem AdobeHeitiStd-Regular;
+}

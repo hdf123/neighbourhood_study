@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>支付宝提现</title>
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		*{margin:0;padding:0;}
+		.headers {
+		  background-color: #607cf4;
+		  box-shadow: 0rem 0rem 0.213rem 0rem rgba(102, 102, 102, 0.18);
+		}
+		.headers > div {
+		  height: 2rem;
+		  color:white;
+		}
+		section {
+		  top: 2rem;
+		  bottom: 0;
+		}
+		section > div {
+		  width: 100%;
+		}
+		section > div > p:nth-child(1) {
+		  width: 30%;
+		  padding: 0.5rem 0;
+		  font-size: 0.512rem;
+		  color: #333333;
+		  text-align: center;
+		  margin: 1rem auto 0;
+		}
+		section > div > p:nth-child(2) {
+		  width: 50%;
+		  font-size: 1.536rem;
+		  color: #000000;
+		  text-align: center;
+		  margin: 0 auto;
+		}
+		section > div > p:nth-child(2) > span:nth-child(2) {
+		  font-size: 0.384rem;
+		}
+		section > div > div:nth-child(4) {
+		  width: 70%;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  padding:0.4rem 0;
+		  background-image: linear-gradient(-90deg, #ff9933 0%, #fd330b 100%);
+		  border-radius: 2rem;
+		  opacity: 0.58;
+		  color: #ffffff;
+		  font-size:0.64rem;
+		  opacity: 0.83;
+		  margin:1.5rem auto 0;
+		}
+		section > div > p:last-child {
+		  font-size: 0.384rem;
+		  text-align: center;
+		  color: #000000;
+		  opacity: 0.68;
+		  margin-top: 0.5rem;
+		}
+		
+		.un_act {
+		  box-sizing: border-box;
+		  width: 90%;
+		  margin: 1rem auto 0;
+		}
+		.un_act > div {
+		  height:2rem;
+		  line-height: 2rem;
+		  font-size: 0.64rem;
+		  border-bottom: 0.05rem solid darkgray;
+		}
+		.un_act > div:nth-child(1) > span {
+		  color: #ff6600;
+		}
+		.un_act > div:nth-child(2) {
+		  padding:0.14rem 0;
+		}
+		.un_act > div:nth-child(2) > span:nth-child(1) {
+		  width: 10%;
+		}
+		.un_act > div:nth-child(2) > input:nth-child(2) {
+		  box-sizing: border-box;
+		  width: 80%;
+		  height: 100%;
+		  padding-left: 0.3rem;
+		  border: none;
+		  outline:none;
+		}
+		.un_act > div:nth-child(2) > input::-webkit-input-placeholder {
+		  color: #cccccc;
+		  font-size: 0.64rem;
+		}
+		.un_act > div:nth-child(2) > span:nth-child(3) {
+			display: inline-block;
+		  	width: 12%;
+		  	height:100%;
+		  	color: #ff6600;
+		  	text-align: center;
+		}
+		.un_act > div:nth-child(3) {
+		  width: 100%;
+		  padding: 0.14rem 0;
+		}
+		.un_act > div:nth-child(3) > input {
+		  width: 100%;
+		  height: 100%;
+		  font-size:0.64rem;
+		  border: none;
+		}
+		.un_act > div:nth-child(3) > input::-webkit-input-placeholder {
+		  padding-left:1.5rem;
+		  color: #cccccc;
+		}
+	</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>支付宝提现</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<p>当前余额</p>
+				<p>
+					<span class="moneys"></span>
+					<span>元</span>
+				</p>
+				<div class="un_act">
+					<div>
+						绑定支付宝账号：<span class="pays"></span>
+					</div>
+					<div>
+						<span>￥</span>
+						<input type="text" placeholder="最低一元起" id="texts" onkeyup="num(this)" onafterpaste="num(this)" value=""/>
+						<span id="wants">全部</span>
+					</div>
+				</div>
+				<div class="un_bd" id="successful">申请提现</div>
+				<p>提现免手续费，申请后请等待审核</p>
+			</div>
+		</section>
+<script type="text/javascript">
+	$(function(){
+		var userid = JSON.parse(localStorage.getItem('userId'));
+		var pays = JSON.parse(localStorage.getItem('pays'));//支付宝账户
+		console.log(pays);
+		$(".moneys").append(pays.money);
+//是否绑定了支付宝
+		if(pays.aliPay==null){
+			$(".pays").append("请绑定支付宝");
+			$(".pays").on("click",function(){
+				window.location.href="binding.html";
+			})
+		}else{
+			$(".pays").append(pays.aliPay);
+		}
+//全部
+		$("#wants").click(function(){
+			$("#texts").val(pays.money);
+		})
+//提现		
+		$("#successful").click(function(){
+			if($("#texts").val()==""){
+				alert("请输入提现金额");
+			}else{
+				if($(".moneys").html()>=$("#texts").val()){
+					var transfer={
+						token:userid.token,
+						walletId:pays.id,			//钱包 id 同用户 id
+						money:$("#texts").val(),	//提现金额
+					}
+					ajaxGet( "wallet/withdraw",'post',transfer,function(data){
+						console.log(data.message);
+						window.location.href="successful.html";
+					},function(err){
+						console.log(err);
+					})
+				}else{
+					window.location.href="failure.html";
+				}
+
+			}
+		})
+	})
+	function num(obj){
+		if(obj.value.length==1){
+			obj.value=obj.value.replace(/[^1-9]/g,'')
+		}else{
+			obj.value=obj.value.replace(/\D/g,'')
+		}
+	}
+</script>
+	</body>
+</html>

@@ -1,0 +1,168 @@
+{
+  "index.html": {
+    "refer": [
+      "html/login/login.html",
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/login/login.html": {
+    "refer": [
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/home/home.html": {
+    "refer": [
+      "html/home/Found.html",
+      "html/home/search.html",
+      "html/my/my_friends.html",
+      "html/content/donation.html",
+      "html/home/community.html",
+      "html/home/my.html",
+      "html/content/study.html"
+    ],
+    "resources": []
+  },
+  "html/home/Found.html": {
+    "refer": [
+      "html/home/home.html",
+      "html/home/Found.html",
+      "html/home/my.html",
+      "html/content/study.html",
+      "html/home/community.html"
+    ],
+    "resources": []
+  },
+  "html/home/search.html": {
+    "refer": [
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/home/my.html": {
+    "refer": [
+      "html/home/Found.html",
+      "html/my/cancellation.html",
+      "html/content/study.html",
+      "html/my/collection.html",
+      "html/my/personal.html",
+      "html/home/home.html",
+      "html/my/order.html",
+      "html/my/borrowing.html",
+      "html/content/donation.html"
+    ],
+    "resources": []
+  },
+  "html/content/study.html": {
+    "refer": [
+      "html/home/Found.html",
+      "html/home/my.html",
+      "html/content/details.html"
+    ],
+    "resources": []
+  },
+  "html/my/my_friends.html": {
+    "refer": [
+      "html/home/home.html",
+      "html/content/buddy.html"
+    ],
+    "resources": []
+  },
+  "html/content/buddy.html": {
+    "refer": [
+      "html/my/my_friends.html"
+    ],
+    "resources": []
+  },
+  "html/content/donation.html": {
+    "refer": [
+      "html/content/participate.html",
+      "html/home/home.html",
+      "html/home/my.html"
+    ],
+    "resources": []
+  },
+  "html/content/participate.html": {
+    "refer": [
+      "html/content/donation.html",
+      "html/content/dons.html"
+    ],
+    "resources": []
+  },
+  "html/my/cancellation.html": {
+    "refer": [
+      "html/login/login.html"
+    ],
+    "resources": []
+  },
+  "html/home/community.html": {
+    "refer": [
+      "html/home/Found.html",
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/my/collection.html": {
+    "refer": [
+      "html/home/Found.html"
+    ],
+    "resources": []
+  },
+  "html/my/personal.html": {
+    "refer": [
+      "html/home/my.html"
+    ],
+    "resources": []
+  },
+  "html/content/details.html": {
+    "refer": [
+      "html/content/study.html",
+      "html/content/submit.html"
+    ],
+    "resources": []
+  },
+  "html/content/settlement.html": {
+    "refer": [
+      "html/content/thirds.html"
+    ],
+    "resources": []
+  },
+  "html/content/submit.html": {
+    "refer": [
+      "html/content/settlement.html"
+    ],
+    "resources": []
+  },
+  "html/content/thirds.html": {
+    "refer": [
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/my/borrowing.html": {
+    "refer": [
+      "html/home/my.html"
+    ],
+    "resources": []
+  },
+  "html/my/order.html": {
+    "refer": [
+      "html/home/my.html"
+    ],
+    "resources": []
+  },
+  "html/content/dons.html": {
+    "refer": [
+      "html/content/dons_details.html",
+      "html/content/participate.html"
+    ],
+    "resources": []
+  },
+  "html/content/dons_details.html": {
+    "refer": [
+      "html/content/dons.html"
+    ],
+    "resources": []
+  }
+}

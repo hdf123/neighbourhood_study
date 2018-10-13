@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>搜索</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<link rel="stylesheet" href="css/search.css" />
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);"></div>
+			<form action="" id="myform">
+				<input type="search" id="inpts" value="" placeholder="书名/作者/书房" autofocus="autofocus"/>
+			</form>
+			<div id="btn">搜索</div>
+		</header>
+		<section>
+			<div></div>
+		</section>
+<script type="text/javascript">
+	$(function(){
+		var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
+		$('#myform').on('keypress', function (e){
+		    var keycode = e.keyCode;
+		    var searchName = $(this).val();
+		　　//keycode是键码，13也是电脑物理键盘的 enter 
+		    if(keycode == '13') {
+		    	e.preventDefault();
+				funcs();
+		    }
+		});
+		$("#btn").click(function(){
+	      	funcs();
+		})
+		function funcs(){
+			var sd=$("#inpts").val();
+	      	var transfer={
+	      		token:userid.token,
+	      		search:sd
+	      	}
+	      	ajaxGet("search/conditionSearch", 'post',transfer, function(data) {
+	      		console.log(data);
+	      		var borrow='';
+				for(i in data.searchUser){
+					borrow+='<div class="fou_rm" data-study="'+data.searchUser[i].id+'">'
+								+'<div>'
+									+'<p>'+data.searchUser[i].name+'</p>'
+								+'</div>'
+								+'<div id="study" class=""study>'
+									+'<span>进入书房</span>'
+								+'</div>'
+							+'</div>';
+				}
+	      		for(i in data.searchBook){
+	      			borrow+='<div class="mor_sj" id="details" data-book='+data.searchBook[i].id+'>'
+								+'<div>'
+									+'<img src='+data.searchBook[i].imges+' />'
+								+'</div>'
+								+'<div>'+data.searchBook[i].bookname+'</div>'
+							+'</div>'
+	      		}
+				$("section>div").html(borrow);
+				
+				$("section>div>div").on("click",function(){
+					if($(this).data("book")==undefined){
+						localStorage.setItem('study',JSON.stringify($(this).data("study")));//书房
+						window.location.href="../content/study.html";
+					}else{
+						localStorage.setItem('lends',JSON.stringify($(this).data("book")));//书本id
+						window.location.href="../content/details.html";
+					}
+				})
+	      	},function(err) {
+				console.log(err);
+			})
+		}
+	})
+</script>
+	</body>
+</html>

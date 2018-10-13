@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>提现记录</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/rem.js"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		* {margin: 0;padding: 0;}
+		html, body {
+		  height: 100%;
+		  position: relative;
+		}
+		.headers {
+		  height: 3.5rem;
+		  color: #ffffff;
+		  background-color: #ec6941;
+		}
+		.headers > div {
+		  width: 94%;
+		  margin: 0 auto;
+		  position: relative;
+		}
+		.headers > div > div:nth-child(1) {
+		  padding: 0.3rem 0.5rem;
+		  position: absolute;
+		  top: 0.5rem;
+		  left: 0;
+		  font-size: 1rem;
+		}
+		.headers > div > div:nth-child(2) {
+		  padding: 0.2rem 0;
+		  text-align: center;
+		}
+		.headers > div > div:nth-child(2) > div {
+		  line-height: 1.5rem;
+		}
+		.headers > div > div:nth-child(2) > div:nth-child(1) {
+		  font-size: 0.9rem;
+		}
+		.headers > div > div:nth-child(2) > div:nth-child(2) {
+		  font-size: 0.75rem;
+		}
+		section {
+		  width: 100%;
+		  overflow: auto;
+		  position: absolute;
+		  top: 3.5rem;
+		  left: 0;
+		  bottom: 0;
+		}
+		section > div {
+		  width: 90%;
+		  margin: 0 auto;
+		}
+		section > div > div:nth-child(1) {
+		  margin-top: 0.6rem;
+		}
+		.recd{
+		  	width: 100%;
+		  	box-sizing: border-box;
+		  	margin: 0.4rem 0;
+		  	padding: 0.5rem 0.4rem;
+		  	display: flex;
+		  	justify-content: space-between;
+		  	background-color: #ffffff;
+			box-shadow: 0rem 0.085rem 0.448rem 0rem rgba(4, 0, 0, 0.2);
+			border-radius: 0.16rem;
+		}
+		.recd>div:nth-child(1){
+			width:30%;
+			/*text-align: center;*/
+		}
+		.recd>div:nth-child(2){
+			width:50%;
+		}
+		.recd>div:nth-child(1)>div:nth-child(1){
+			color: #e30003;
+		  	font-size: 0.768rem;
+		}
+		.recd>div:nth-child(1)>div:nth-child(2){
+			color: #666666;
+		  	font-size: 0.512rem;
+		}
+		.recd>div:nth-child(2){
+			font-size: 0.512rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.recd>div:nth-child(2)>div:nth-child(1){
+		  	color: white;
+		  	text-align: center;
+		  	padding:0.1rem 0;
+		  	background-color: #ffc001;
+		}
+		.recd>div:nth-child(2)>div:nth-child(2){
+			color: #666666;
+		}
+	</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);"></div>
+				<div>
+					<div>提现记录</div>
+					<div>已提现：<span id="totals">1204</span></div>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<div class="recd">
+					<div>
+						<div>12000.00</div>
+						<div>提现金额</div>
+					</div>
+					<div>
+						<div>已到账</div>
+						<div>2018.08.07 18.32</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+<script type="text/javascript">
+	var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
+	var transfer={
+		token:userid.token,
+		userId:userid.userId,
+	}
+	ajaxGet( "wallet/selectReview",'get',transfer,function(data){//买家
+		console.log(data);
+		var hj='',totals=0;
+		for(i in data){
+			var ksd="";
+			if(data[i].status==0){
+				ksd='<div style="background:#DBD2C3">待审核</div>';
+			}else if(data[i].status==1){
+				ksd='<div style="background:#6666ff">审核通过</div>';
+			}else if(data[i].status==2){
+				ksd='<div style="background:#ec6941">审核失败</div>';
+			}else if(data[i].status==3){
+				ksd='<div style="background:#aaaaaa">提现失败</div>';
+			}else{
+				ksd='<div style="background:#ffc001">已到账</div>';
+			}
+			hj+='<div class="recd">'
+					+'<div>'
+						+'<div>'+data[i].money+'</div>'
+						+'<div>提现金额</div>'
+					+'</div>'
+					+'<div>'
+						+ksd+'<div>'+data[i].createTime+'</div>'
+					+'</div>'
+				+'</div>';
+		}
+		$("section>div").html(hj);
+		$("#totals").html(totals);
+	},function(err){
+		console.log(err);
+	})
+</script>
+	</body>
+</html>
