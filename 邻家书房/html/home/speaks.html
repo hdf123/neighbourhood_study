@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>聊天设置</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<script src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		header {
+		  color: white;
+		  background: #607cf4;
+		}
+		header > div{
+		  height:2rem;
+		}
+		section {
+		  top:2rem;
+		  bottom: 0rem;
+		}
+		section > div {
+		  width: 100%;
+		}
+		section > div > #deles {
+		  width: 100%;
+		  height:2rem;
+		  position: absolute;
+		  left: 0;
+		  bottom: 0;
+		  font: 500 0.64rem AdobeHeitiStd-Regular;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  color: white;
+		  background: #F96156;
+		}
+	</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>返回</span>
+				</div>
+				<div>聊天设置</div>
+				<div id="buddy" class="iconfont icon-solid-person"></div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<p id="deles">删除好友</p>
+			</div>
+		</section>
+		
+		
+<script type="text/javascript">
+	$(function(){
+		var userid = JSON.parse(localStorage.getItem('userId'));//自己的
+		var friends = JSON.parse(localStorage.getItem('friends'));//朋友的
+		$("#deles").on("click",function(){
+			var transfer={
+				token:userid.token,
+				accid:userid.userId,
+				faccid:friends.usid
+			}
+//			ajaxGet( "http://192.168.1.181:8888/wangyi/deleteFriend",'post',transfer,function(data){
+			ajaxGet( "http://39.104.127.252:8080/linjia-manager/wangyi/deleteFriend",'post',transfer,function(data){
+				console.log(data);
+				console.log("删除成功");
+				
+			},function(err){
+				console.log(err);
+			})
+		})
+	})
+</script>
+	</body>
+</html>

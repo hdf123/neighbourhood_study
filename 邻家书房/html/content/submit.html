@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>订单提交</title>
+		<link rel="stylesheet" href="../../css/ydui.css?rev=@@hash">
+		<link rel="stylesheet" href="../../css/demo.css">
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/ydui.flexible.js"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		header>div{
+		  height:2rem;
+		}
+		section{
+			top:2rem;
+			bottom:0;
+		}
+		#address{
+		  width: 90%;
+		  margin: 0 auto;
+		}
+		#address> div:nth-child(1) {
+		  width: 100%;
+		}
+		#address> div:nth-child(1) > input {
+		  padding: 0 0.3rem;
+		  width: 100%;
+		  min-height:1.5rem;
+		  margin-left: 0 auto;
+		  font-size: 0.64rem;
+		  border: none;
+		  outline: none;
+		  border-bottom: 1px solid gray;
+		}
+		.m-cell{
+			height:1.5rem;
+			display: flex;
+			align-items: center;
+		}
+		.cityselect-item-box > a span {
+			text-align:center;
+		}
+		.detaileds {
+		  width: 100%;
+		  min-height: 2rem;
+		  font-size: 0.64rem;
+		  padding: 0.2rem 0.1rem;
+		  border: none;
+		}
+		.sub_address{
+			width:90%;
+			color: #333333;
+		}
+		.sub_address>div:nth-child(1){
+			margin-left:0.6rem;
+			width:70%;
+			display: flex;
+			justify-content:space-between;
+			font:normal 0.768rem AdobeHeitiStd-Regular;
+		}
+		.sub_address>div:nth-child(2){
+			display: flex;
+			font:normal 0.64rem AdobeHeitiStd-Regular;
+		}
+		.sub_add{
+			display: flex;
+			padding:0.2rem 1rem;
+			margin:1rem 0 0;
+			background-color:#eeeeee;
+			font:500 1rem AdobeHeitiStd-Regular;
+		}
+		.sub_add>div:nth-child(1){
+			width:15%;
+			overflow: hidden;
+		}
+		.sub_add>div:nth-child(1)>img{
+			width:100%;
+		}
+		.sub_add>div:nth-child(2){
+			font:normal 0.64rem AdobeHeitiStd-Regular;
+			margin-left:1rem;
+			width:40%;
+		}
+		.sub_add>div:nth-child(3){
+			width:30%;
+			padding-top:0.5rem;
+			font:500 0.64rem AdobeHeitiStd-Regular;
+		}
+		.sub_add>div:nth-child(3)>div:nth-child(1){
+			color: #fd3f05;
+			font:normal 0.64rem AdobeHeitiStd-Regular;
+		}
+		.sub_add>div:nth-child(3)>div:nth-child(2){
+			font:normal 0.512rem AdobeHeitiStd-Regular;
+		}
+		.sub_add>div:nth-child(3)>div:nth-child(2)>span{
+			color: red;
+		}
+		.sub_add>div:nth-child(4){
+			width:10%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font:500 0.64rem AdobeHeitiStd-Regular;
+		}
+		.sub_adds{
+			width:50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin:2.5rem auto 0;
+			padding:0.5rem 0;
+			background-color: #fa524f;
+			font:normal 0.768rem AdobeHeitiStd-Regular;
+			color:white;
+		}
+	</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>提交订单</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<div id="address">
+					<div>
+						<input type="text" placeholder="收货人" class="names"/>
+						<input type="text" placeholder="手机号码" class="phones"/>
+					</div>
+			        <div class="m-cell">
+			            <div class="cell-item">
+			                <div class="cell-left">所在地区：</div>
+			                <div class="cell-right cell-arrow">
+			                    <input type="text" class="cell-input" readonly id="J_Address" placeholder="请选择收货地址">
+			                </div>
+			            </div>
+			        </div>
+					<div>
+						<textarea class="detaileds" placeholder="详细地址:如道路、门牌号、小区、楼栋号、单元室等"></textarea>
+					</div>
+				</div>
+				<div class="sub_add">
+					<div>
+						<img src="../../img/com_14.png" alt="" class="picture" />
+					</div>
+					<div>
+						<div class="bookname">《狼王菠萝》</div>
+						<div class="author">放大书法</div>
+					</div>
+					<div>
+						<div>￥<span id="money">28.30</span></div>
+						<div>共（<span class="nums">1</span>）件</div>
+					</div>
+					<div class="iconfont icon-qianjin"></div>
+				</div>
+			</div>
+			<div class="sub_adds" id="sub_adds">提交订单</div>
+		</section>
+<script type="text/javascript" src="../../js/ydui.citys.js"></script>
+<script type="text/javascript" src="../../js/ydui.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var userid = JSON.parse(localStorage.getItem('userId'));//自己的
+		var lends = JSON.parse(localStorage.getItem('lends'));//书本id
+		var borrows = JSON.parse(localStorage.getItem('borrows'));//书本id
+		$(".picture").attr("src",borrows.image);
+		$(".bookname").html("《"+borrows.bookName+"》");
+		$(".author").html(borrows.author);
+		$("#money").html(borrows.price);
+//提交订单信息
+		ajaxGet("book/details?bookId="+borrows.itemId,'get',{token:userid.token},function(data){
+			$("#sub_adds").click(function(){
+//			payment 实付金额、userId 买家 ID、sellerId 卖家 ID、receiverAreaName 收货地址、
+//			receiverMobile 收货手机号、receiver 收货人姓名、 itemId、商品 ID、bookName 图书名、
+//			price 图书单价、 image 图书图片、 num 购买数量、 totalFee 商品总金额
+
+				var sds=$("#J_Address").val()+" "+$(".detaileds").val();
+				var transfer={
+					token:userid.token,							//token
+					userId:userid.userId,						//买家id
+//					payment:0.01,								//实付金额
+					payment:$("#money").html(),					//实付金额
+					receiverAreaName:sds,						//买家地址
+					receiverMobile:$(".phones").val(),			//收货手机号
+					receiver:$(".names").val(),					//收货人姓名
+					
+					sellerId:borrows.sellerId,					//卖家id
+					
+					itemId:borrows.itemId,						//商品id
+					bookName:borrows.bookName,					//书名
+//					price:0.01,									//图书单价
+					price:borrows.price,						//图书单价
+					image:borrows.image,						//图书图片
+					num:$(".nums").html(),						//购买数量
+//					totalFee:0.01,								//商品总金额
+					totalFee:$("#money").html(),				//商品总金额
+				}
+				if($(".names").val()==""||$(".phones").val()==""||$("#J_Address").val()==""||$(".detaileds").val()==""){
+					alert("请填写完整的订单信息");
+				}else{
+					ajaxGet("book/create/order",'post',transfer,function(data){
+						var data=data.data;
+						console.log(data);
+						var orderId={
+							orderId:data.orderId,
+							borrow:transfer
+						}
+						localStorage.setItem('orderId', JSON.stringify(orderId));
+						window.location.href="settlement.html";
+					},function(err) {
+						console.log(err);
+					})
+					console.log(transfer);
+				}
+			})
+		},function(err) {
+			console.log(err);
+		})
+//收货地址选择
+		!function () {
+			var $target = $('#J_Address');
+		
+			$target.citySelect();
+		
+			$target.on('click', function (event) {
+				event.stopPropagation();
+				$target.citySelect('open');
+			});
+		
+			$target.on('done.ydui.cityselect', function (ret) {
+				$(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
+			});
+		}();
+	})
+	$("#address").click(function(){
+//		window.location.href="address.html";
+	})
+</script>
+	</body>
+</html>

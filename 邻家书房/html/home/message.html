@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>关于我的</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<link rel="stylesheet" type="text/css" href="css/webiaoqing_2.css"/>
+		<link rel="stylesheet" type="text/css" href="css/message.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script type="text/javascript" src="js/webiaoqin_2.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/swiper-4.3.3.min.js"></script>
+	</head>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>关于我的</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<ul>
+				<li>
+					<div>
+						<div>
+							发表的动态内容发表的动态内容
+							发表的动态内容发表的动态内容
+							发表的动态内容发表的动态内容
+							<div>
+								<img src="../../img/com_03.png" alt="" />
+							</div>
+						</div>
+						<div>发表时间</div>
+					</div>
+					<div class="backjing">
+						<div>
+							<div>
+								<img src="../../img/com_03.png" alt="" />
+							</div>
+							<span>小曼评论：</span>
+						</div>
+						<div>
+							<div>
+								<div>
+									评论内容
+								</div>
+								<div>评论时间</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<div id="sends">
+			<input type="text" value="" />
+			<div>发送</div>
+		</div>
+<script type="text/javascript">
+	$(function(){
+		$("#sends").hide();
+		var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
+		var usk={
+			token:userid.token,
+			userId:userid.userId
+		}
+		ajaxGet( "dynamic/unread/details",'post',usk,function(data){
+			console.log(data);
+			if(data.data<1){
+				$("section>ul").html('<div class="zw">暂无未读消息</div>');
+				console.log(1);
+			}else{
+				var hk="";
+				$.each(data.data,function(key,val) {
+					if(val.动态图片==""||val.动态图片==null){
+						hk+='<li data-dynamicid='+val.动态ID+'>'
+								+'<div>'
+									+'<div>'+val.动态内容+'</div>'
+									+'<div>'+val.动态发表时间+'</div>'
+								+'</div>'
+								+'<div class="backjing" data-replyd='+val.评论者的Id+'>'
+									+'<div>'
+										+'<div>'
+											+'<img src='+val.评论者的头像+' alt="" />'
+										+'</div>'
+										+'<span>'+val.评论者的昵称+'：</span>'
+										+'<div class="replyd">回复</div>'
+									+'</div>'
+									+'<div>'
+										+'<div>'
+											+'<div>'+val.评论内容+'</div>'
+											+'<div>'+val.评论时间+'</div>'
+										+'</div>'
+									+'</div>'
+								+'</div>'
+							+'</li>';
+					}else{
+						var imgsd=val.动态图片.split(",")
+						var jk='';
+						for(j in imgsd){
+							jk+='<img src='+imgsd[j]+' alt="" />'
+						}
+						hk+='<li data-dynamicid='+val.动态ID+'>'
+								+'<div>'
+									+'<div>'+val.动态内容+'<div class="ims">'+jk+'</div>'
+									+'</div>'
+									+'<div>'+val.动态发表时间+'</div>'
+								+'</div>'
+								+'<div class="backjing" data-replyd='+val.评论者的Id+'>'
+									+'<div>'
+										+'<div>'
+											+'<img src='+val.评论者的头像+' alt="" />'
+										+'</div>'
+										+'<span>'+val.评论者的昵称+'：</span>'
+										+'<div class="replyd">回复</div>'
+									+'</div>'
+									+'<div>'
+										+'<div>'
+											+'<div>'+val.评论内容+'</div>'
+											+'<div>'+val.评论时间+'</div>'
+										+'</div>'
+									+'</div>'
+								+'</div>'
+							+'</li>';
+					}
+				});
+				$("section>ul").html(hk);
+			}
+//发表回复
+			$("#sends").on("click",function(event){
+				event.stopPropagation();
+			})
+			var indes='';
+			$("section").on("click",".replyd",function(){
+				indes=$(this);
+				$("#sends").show();
+				$("#sends>input").focus();
+			})
+		  	$("#sends>div").on("click",function(){
+		  		console.log($("#sends>input").val());
+		  		var dynamicId=indes.closest("li").data("dynamicid");//获取动态id
+		  		var id=indes.closest(".backjing").data("replyd");//评论者id
+		  		var transfer={
+		  			token:userid.token,
+		  			dynamicId:dynamicId,
+		  			userId:userid.userId,//发布评论用户 id
+		  			user2Id:id,//被评论用户 id
+		  			body:$("#sends>input").val()
+		  		}
+		  		ajaxGet("dynamic/addComment",'post',transfer,function(data){
+		  			$("#sends").hide();
+		  			console.log(data);
+		  		},function(err){
+					console.log(err);
+				})
+		  	})
+		},function (err){
+			console.log(err);
+		});
+	})
+</script>
+	</body>
+</html>

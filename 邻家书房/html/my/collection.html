@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的收藏</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/rem.js"></script>
+		<script src="../../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		.headers {
+		  background: #607CF4;
+		}
+		.headers > div {
+		  height: 2.25rem;
+		}
+		.headers > div > div {
+		  font: 500 0.768rem AdobeHeitiStd-Regular;
+		}
+		section {
+		  top: 2.25rem;
+		  bottom:0;
+		}
+		.com_cir {
+		  box-sizing: border-box;
+		  width: 100%;
+		  padding-top: 0.5rem;
+		  margin-bottom: 0.4rem;
+		  background: #FFFFFF;
+		}
+		.com_cir > div {
+		  box-sizing: border-box;
+		  width: 100%;
+		  margin: 0 auto 0.4rem;
+		  padding: 0 1rem 0.5rem;
+		  border-bottom: 0.4rem solid #EEEEEE;
+		}
+		.com_cir > div > div {
+		  display: flex;
+		  justify-content: space-between;
+		}
+		.com_cir > div > div > div:nth-child(1) {
+		  display: flex;
+		  align-items: center;
+		}
+		.com_cir > div > div > div:nth-child(1) > div:nth-child(1) {
+		  width:1.6rem;
+		  height:1.6rem;
+		  border-radius: 50%;
+		  overflow: hidden;
+		}
+		.com_cir > div > div > div:nth-child(1) > div:nth-child(1) > img {
+		  width: 100%;
+		}
+		.com_cir > div > div > div:nth-child(1) > div:nth-child(2) {
+		  margin-left: 0.5rem;
+		}
+		.com_cir > div > div > div:nth-child(1) > div:nth-child(2) > p:nth-child(1) {
+		  font-size: 0.64rem;
+		}
+		.com_cir > div > div > div:nth-child(1) > div:nth-child(2) > p:nth-child(2) {
+		  font-size: 0.384rem;
+		  color: #999999;
+		}
+		.com_cir > div > div > div:nth-child(2) {
+		  height: 1rem;
+		  font-size: 0.64rem;
+		  display: flex;
+		  justify-content: center;
+		  color: white;
+		  align-items: center;
+		  padding: 0.1rem 0.2rem;
+		  background-color: #607cf4;
+		  box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(96, 124, 244, 0.41);
+		  border-radius: 0.48rem;
+		}
+		.com_cir > div > p {
+		  margin-top: 1rem;
+		  font-size: 0.512rem;
+		  color: #333333;
+		}
+		.com_cir > div > p > span {
+		  color: #7B7BFF;
+		}
+		
+		.footer_menu {
+		  height: 2.5rem;
+		  background: white;
+		}
+		
+		.footer_menu > div {
+		  font: 500 0.64rem AdobeHeitiStd-Regular;
+		}
+	</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>我的收藏</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<div class="com_cir">
+					<!--<div>
+						<div>
+							<div>
+								<div>
+									<img src="../../img/com_03.png" alt="" />
+								</div>
+								<div>
+									<p>喵喵</p>
+									<p>心里咨询师</p>
+								</div>
+							</div>
+							<div>取消收藏</div>
+						</div>
+						<p>
+							阿升大三大四的撒发生的阿斯蒂芬啊阿升大三大四的撒发生的阿斯蒂芬啊
+							阿升大三大四的撒发生的阿斯蒂芬啊阿升大三大
+							<span>#故乡情#</span>
+						</p>
+					</div>-->
+				</div>
+			</div>
+		</section>
+<script type="text/javascript" src="../../js/swiper-4.3.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
+	  	ajaxGet("dynamic/selectMyCollection",'get',{token:userid.token,userId:userid.userId},function(data){
+	  		var ty='';
+	  		for(i in data){
+	  			if(data[i].dynamic.circleId==1){
+		  			ty+='<div>'
+							+'<div>'
+								+'<div>'
+									+'<div><img src='+data[i].userImage+' alt="" /></div>'
+									+'<div>'
+										+'<p>'+data[i].userName+'</p>'
+										+'<p>'+data[i].zhiye+'</p>'
+									+'</div>'
+								+'</div>'
+								+'<div class="cancel" data-ids='+data[i].dynamic.id+'>取消收藏</div>'
+							+'</div>'
+							+'<p>'+data[i].dynamic.body+'<span>#文艺圈#</span></p>'
+						+'</div>';
+	  			}else if(data[i].dynamic.circleId==2){
+		  			ty+='<div>'
+							+'<div>'
+								+'<div>'
+									+'<div><img src='+data[i].userImage+' alt="" /></div>'
+									+'<div>'
+										+'<p>'+data[i].userName+'</p>'
+										+'<p>'+data[i].zhiye+'</p>'
+									+'</div>'
+								+'</div>'
+								+'<div class="cancel" data-ids='+data[i].dynamic.id+'>取消收藏</div>'
+							+'</div>'
+							+'<p>'+data[i].dynamic.body+'<span>#摄影圈#</span></p>'
+						+'</div>';
+	  			}else if(data[i].dynamic.circleId==3){
+		  			ty+='<div>'
+							+'<div>'
+								+'<div>'
+									+'<div><img src='+data[i].userImage+' alt="" /></div>'
+									+'<div>'
+										+'<p>'+data[i].userName+'</p>'
+										+'<p>'+data[i].zhiye+'</p>'
+									+'</div>'
+								+'</div>'
+								+'<div class="cancel" data-ids='+data[i].dynamic.id+'>取消收藏</div>'
+							+'</div>'
+							+'<p>'+data[i].dynamic.body+'<span>#故乡情#</span></p>'
+						+'</div>';
+	  			}else if(data[i].dynamic.circleId==4){
+		  			ty+='<div>'
+							+'<div>'
+								+'<div>'
+									+'<div><img src='+data[i].userImage+' alt="" /></div>'
+									+'<div>'
+										+'<p>'+data[i].userName+'</p>'
+										+'<p>'+data[i].zhiye+'</p>'
+									+'</div>'
+								+'</div>'
+								+'<div class="cancel" data-ids='+data[i].dynamic.id+'>取消收藏</div>'
+							+'</div>'
+							+'<p>'+data[i].dynamic.body+'<span>#电影部落#</span></p>'
+						+'</div>';
+	  			}else{
+		  			ty+='<div>'
+							+'<div>'
+								+'<div>'
+									+'<div><img src='+data[i].userImage+' alt="" /></div>'
+									+'<div>'
+										+'<p>'+data[i].userName+'</p>'
+										+'<p>'+data[i].zhiye+'</p>'
+									+'</div>'
+								+'</div>'
+								+'<div class="cancel" data-ids='+data[i].dynamic.id+'>取消收藏</div>'
+							+'</div>'
+							+'<p>'+data[i].dynamic.body+'<span>#其他#</span></p>'
+						+'</div>';
+	  			}
+	  		}
+	  		$(".com_cir").html(ty);
+	  		$(".com_cir").on("click",".cancel",function(){
+	  			var dynamicId=$(this).data("ids");//动态id
+	  			console.log($(this).data("ids"));
+	  			var dataObj={
+	  				dynamicId:dynamicId,//动态id
+	  				userId:userid.userId,//自己的id
+	  				token:userid.token
+	  			}
+	  			ajaxGet("dynamic/addCollection",'post',dataObj,function(data){
+	  				console.log(data);
+	  				window.location.reload();//重新加载当前页面
+	  			},function(err){
+					console.log(err);
+				})
+	  		});
+	  	},function(err){
+			console.log(err);
+		})
+//图片加载失败时，动态添加也包含在内
+		document.addEventListener("error", function (e) {
+		  var elem = e.target;
+		  if (elem.tagName.toLowerCase() == 'img'){
+		    elem.src = "../../img/err.png";
+		  }
+		}, true);
+	})
+	$("#home").click(function(){
+	  	window.location.href="../home/home.html";
+	 })
+	$("#community").click(function(){
+	  	window.location.href="../home/community.html";
+	})
+	$("#Found").click(function(){
+	  	window.location.href="../home/Found.html";
+	 })
+	$("#my").click(function(){
+	  	window.location.href="../home/my.html";
+	})
+</script>
+		
+		
+		
+	</body>
+</html>

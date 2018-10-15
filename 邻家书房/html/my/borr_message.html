@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>还书提醒</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<link rel="stylesheet" href="css/borr_message.css" />		
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>还书提醒</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<ul class="xsd">
+					<p class="zw">暂无还书信息</p>
+				</ul>
+			</div>
+		</section>
+<script type="text/javascript">
+	$(function(){
+		var userid = JSON.parse(localStorage.getItem('userId'));//登陆账户id
+//催收信息详情
+		var ks={
+			token:userid.token,
+			userID:userid.userId
+		}
+		ajaxGet("my/unread/OverdueNews/details",'post',ks,function(data){
+			console.log(data);
+			var data=data.data,ksk="";
+			data.length?func():$("section").css({"background":"#eeeeee"});
+			console.log(data.length);
+			function func(){
+				for(i in data){
+					ksk+='<li>'
+							+'<div>'
+								+'<div>'
+									+'<img src='+data[i].图书拥有者的信息.image+' alt="" />'
+								+'</div>'
+								+'<div>'+data[i].图书拥有者的信息.nickname+'</div>'
+							+'</div>'
+							+'<div>'+data[i].催还消息内容+'</div>'
+							+'<div>'+data[i].催还消息发送的时间+'</div>'
+						+'</li>';
+				}
+				$(".xsd").html(ksk);
+			}
+		},function(err){
+			console.log(err);
+		})
+	})
+</script>
+	</body>
+</html>
