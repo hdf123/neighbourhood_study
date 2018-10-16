@@ -260,7 +260,7 @@
                 <div>
                     <label>
                     	<img src="../../img/add.png"/>
-                        <input type="file" class="imgFile" name="studyPhoto1" id="studyPhoto1" >
+                        <input type="file" class="imgFile" name="studyPhoto1" id="studyPhoto1" accept="image/*" >
                     </label>
                 </div>
             </div>
@@ -307,7 +307,7 @@
 	        for (var i = 0; i < objUrl.length; i++){
 	            var reader = new FileReader();
 	            reader.readAsDataURL(objUrl[i]);
-	             reader.onload = function(e){
+	            reader.onload = function(e){
 	             	var base=this.result;
 	             	var dataObj={
 	             		token:userid.token,
@@ -318,7 +318,7 @@
 					},function(err){
 						console.log(err);
 					})
-	             }
+	            }
 	        }
 	    });
 		$("#save").click(function(){//保存
