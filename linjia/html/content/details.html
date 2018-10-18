@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>书籍详情</title>
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		.headers{
+			background: #607cf4;
+		}
+		.headers>div{
+		    height: 2rem;
+		}
+		section{
+			top:2rem;
+			bottom:2.5rem;
+		}
+		.buddy{
+			width:100%;
+			box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(173, 173, 173, 0.22);
+			border-radius: 0.213rem;
+			padding:0.3rem 0;
+		}
+		.buddy>div{
+			width:70%;
+			margin:0 auto;
+			background-color: #ffffff;
+			display: flex;
+		}
+		.buddy>div>div:nth-child(1){
+			width:1.8rem;
+			height:1.8rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+			box-shadow: 0rem 0rem 0.1rem 0rem rgba(173, 173, 173, 0.6);
+			overflow: hidden;
+		}
+		.buddy>div>div:nth-child(1)>img{
+			width:100%;
+		}
+		.buddy>div>div:nth-child(2){
+			margin-left:0.4rem;
+		}
+		.buddy>div>div:nth-child(2)>p:nth-child(2)>i:nth-child(2){
+			font-size:0.64rem;
+		}
+		.buddy>div>div:nth-child(2)>p{
+			color: #333333;
+			font:500 0.64rem AdobeHeitiStd-Regular;
+			display: flex;
+			align-items: center;
+		}
+		.buddy>div>div:nth-child(2)>p:nth-child(2)>span:nth-child(1){
+			display: inline-block;
+			min-width:1rem;
+			max-width:5rem;
+			overflow: hidden;
+			text-overflow:ellipsis;
+			white-space: nowrap;
+		}
+		.buddy>div>div:nth-child(2)>p:nth-child(1)>span:nth-child(1),
+		.buddy>div>div:nth-child(2)>p:nth-child(2)>span:nth-child(3){
+			font:500 0.512rem AdobeHeitiStd-Regular;
+		}
+		.buddy>div>div:nth-child(2)>p:nth-child(1)>span:nth-child(2){
+			opacity: 0.6;
+			padding:0 0.2rem;
+			margin-left:1rem;
+			background-color: #607cf4;
+			border-radius: 0.213rem;
+			display: inline-block;
+			color: #f9fafc;
+		}
+		.shows{
+			width:100%;
+			max-height:16rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding:1rem 0;
+			background-color: #eeeeee;
+		}
+		.shows>div{
+			width:35%;
+			max-height:7rem;
+			overflow: hidden;
+			box-shadow: 0rem 0rem 0.213rem 0rem rgba(102, 102, 102, 0.38);
+		}
+		.shows>div>img{
+			width:100%;
+		}
+		.buddy_det{
+			width:95%;
+			margin:0 auto;
+		}
+		.buddy_det>div>div{
+			width:50%;
+			font:normal 0.64rem AdobeHeitiStd-Regular;
+			line-height: 1.024rem;
+		}
+		.buddy_det>div>div:nth-child(1)>p:nth-child(1){
+			display: -webkit-box;/*将对象作为弹性伸缩盒子模型显示。*/
+	        -webkit-box-orient: vertical;/*从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式）*/
+	        -webkit-line-clamp:2;/*超出3行用省略号表示*/
+	        overflow: hidden; /*超出隐藏*/
+		}
+		.buddy_det>div>div:nth-child(2)>p:nth-child(1){
+			display: -webkit-box;/*将对象作为弹性伸缩盒子模型显示。*/
+	        -webkit-box-orient: vertical;/*从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式）*/
+	        -webkit-line-clamp:1;/*超出3行用省略号表示*/
+	        overflow: hidden; /*超出隐藏*/
+		}
+		.buddy_det>div:nth-child(1),.buddy_det>div:nth-child(2){
+			display: flex;
+			padding:0.5rem 0;
+		}
+		.buddy_dets>p:nth-child(1)>span:nth-child(1){
+			color: #fd3f05;
+			/*border:1px solid red;*/
+			font:normal 1.024rem AdobeHeitiStd-Regular;
+		}
+		.buddy_dets>p:nth-child(2)>input{
+			width:2rem;
+			border:none;
+			outline: none;
+			text-align: center;
+			border-bottom:1px solid gainsboro;
+		}
+		footer{
+			height:1.856rem;
+			color: #f9fafc;
+			font:normal 0.768rem AdobeHeitiStd-Regular;
+			background:#fbb458;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.jsd{
+			width:95%;
+			display: flex;
+			margin:1.5rem auto 0;
+			font-size:0.64rem;
+		}
+		.jsd>div:nth-child(1){
+			width:50%;
+			display: flex;
+			align-items: center;
+		}
+		.kk{
+			width:6rem;
+			height:1.5rem;
+			display:flex;
+			justify-content:space-between;
+			align-items: center;
+			border:1px solid grey;
+			border-radius:0.3rem;
+		}
+		.kk>div{
+			height:100%;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.kk>div:nth-child(1){
+			width:30%;
+			border-right:1px solid grey;
+		}
+		.kk>div:nth-child(2){
+			width:40%;
+		}
+		.kk>div:nth-child(3){
+			width:30%;
+			border-left:1px solid gray;
+		}
+		.kk>div:nth-child(2)>input{
+			width:100%;
+			height:85%;
+			border:none;
+			outline: none;
+			text-align: center;
+		}
+	</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>书籍详情</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<div class="buddy">
+					<div>
+						<div>
+							<img src="../../img/com_01.png" />
+						</div>
+						<div>
+							<p>ID:
+								<span>1236</span>
+								<span>雅姿书房</span>
+							</p>
+							<p>
+								<span>小王</span>
+								<i class="iconfont gender"></i>
+								<span>26</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="shows">
+					<div>
+						<img src="../../img/com_14.png"/>
+					</div>
+				</div>
+				<div class="buddy_det">
+					<div>
+						<div>
+							<p>书名：<span>三国</span></p>
+							<p>作者：<span>演绎</span></p>
+							<p>译：<span>霍元甲</span></p>
+						</div>
+						<div class="buddy_dets"></div>
+					</div>
+					<div>
+						<div>
+							<p>ISBN号：<span>sdfsd</span></p>
+							<p>出版时间：<span>出版时间</span></p>
+							<p>总页数：<span>10001</span></p>
+						</div>
+						<div>
+							<p>出版社：<span>出版社</span></p>
+							<p>版次：<span>版次</span></p>
+							<p>正文语种：<span>正文语种</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="jsd">
+					<div>借出天数：</div>
+					<div class="kk">
+						<div class="iconfont icon-jianshao"></div>
+						<div>
+							<input type="text" id="monsy" onkeyup="num(this)" onafterpaste="num(this)" value="1"/>
+						</div>
+						<div class="iconfont icon-tianjia"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer id="submit">立即下单</footer>
+<script type="text/javascript">
+	$(function(){
+		var userid = JSON.parse(localStorage.getItem('userId'));//用户id 
+		var lends = JSON.parse(localStorage.getItem('lends'));//书本id
+		$(".jsd").hide();
+		ajaxGet("book/details?bookId="+lends,'get',{token:userid.token},function(data){
+			var data=data.data;
+			console.log(data);
+			$(".buddy").html('<div>'
+								+'<div>'
+									+'<img src='+data.user.image+' />'
+								+'</div>'
+								+'<div>'
+									+'<p>ID:'
+										+'<span>'+data.user.id+'</span>'
+										+'<span>'+data.user.name+'</span>'
+									+'</p>'
+									+'<p>'
+										+'<span>'+data.user.nickname+'</span>'
+										+'<i class="iconfont gender"></i>'
+										+'<span>'+data.user.age+'</span>'
+									+'</p>'
+								+'</div>'
+							+'</div>');
+			if(data.user.gender=="女"){
+				$(".gender").addClass("icon-nv").css({"color":"red"});
+			}else{
+				$(".gender").addClass("icon-nan").css({"color":"blue"});
+			}
+			var imges=data.book.imges.split(",");
+			$(".shows>div").html('<img src='+imges[0]+' alt="" />');
+			if(data.book.pages==null){
+				data.book.pages="";
+			}
+			$(".buddy_det").html('<div>'
+									+'<div>'
+										+'<p>书名：<span>'+data.book.bookname+'</span></p>'
+										+'<p>作者：<span>'+data.book.author+'</span></p>'
+									+'</div>'
+									+'<div class="buddy_dets"></div>'
+								+'</div>'
+								+'<div>'
+									+'<div>'
+										+'<p>ISBN号：<span>'+data.book.isbn+'</span></p>'
+										+'<p>出版时间：<span>'+data.book.pubtime+'</span></p>'
+										+'<p>总页数：<span>'+data.book.pages+'</span></p>'
+									+'</div>'
+									+'<div>'
+										+'<p>出版社：<span>'+data.book.pubname+'</span></p>'
+										+'<p>版次：<span>'+data.book.editionorder+'</span></p>'
+										+'<p>正文语种：<span>'+data.book.language+'</span></p>'
+									+'</div>'
+								+'</div>');
+			if(data.loanPrice==undefined){
+				var money=data.sellPrice/100;
+				$(".buddy_dets").append('<p>出售:'
+											+'<span>'+money+'</span>元'
+										+'</p>');
+			}else{
+				$(".jsd").show();
+				var money=data.loanPrice/100;
+				$(".buddy_dets").append('<p>出借:<span>'+money+'</span>元/天</p>'
+										+'<p>押金:<span>'+money+'</span>元</p>');
+			}
+//商品数量
+			$(".icon-jianshao").on("click",function(){
+				var dd=$("#monsy").val();
+				dd--;
+				if(dd<=1){
+					$("#monsy").val(1);
+				}else{
+					$("#monsy").val(dd)
+				}
+			})
+			$(".icon-tianjia").on("click",function(){
+				var dd=$("#monsy").val();
+				dd++;
+				$("#monsy").val(dd);
+			})
+			$("#monsy").blur(function(){
+				if($(this).val()==""){
+					$(this).val(1);
+				}
+			})
+			$("#submit").click(function(){
+				var jgs=0;
+				if($("#monsy").val()==undefined){
+					jgs=$(".buddy_dets>p>span").html();
+				}else{
+					jgs=$(".buddy_dets>p>span").html()*$("#monsy").val();
+				}
+				var borrow={
+					sellerId:data.user.id,					//卖家id
+					itemId:data.book.id,					//书本id
+					bookName:data.book.bookname,			//书名
+					price:jgs,								//单价
+					image:imges[0],							//图书图片
+					author:data.book.author,				//图书作者
+				}	
+				console.log(borrow.price);
+				
+				localStorage.setItem('borrows',JSON.stringify(borrow));	
+				window.location.href="submit.html";
+			})
+		},function(err){
+			console.log(err);
+		})
+	})
+	function num(obj){
+		if(obj.value.length==1){
+			obj.value=obj.value.replace(/[^1-9]/g,'')
+		}else{
+			obj.value=obj.value.replace(/\D/g,'')
+		}
+	}
+</script>
+	</body>
+</html>

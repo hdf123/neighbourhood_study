@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>绑定账号</title>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		.logind{
+		  width: 80%;
+		  margin:2rem auto 0;
+		}
+		.logind > div:nth-child(1) {
+		  font-size: 0.64rem;
+		  text-align: center;
+		}
+		.logind > div:nth-child(2) {
+		  margin-top: 1rem;
+		}
+		.logind_childs {
+		  width: 100%;
+		  height: 1.7rem;
+		  display: flex;
+		  align-items: center;
+		  background-color: #ffffff;
+		  box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(255, 255, 255, 0.22);
+		  border-radius: 0.213rem;
+		  overflow: hidden;
+		}
+		.logind_childs > div {
+		  width: 15%;
+		  height: 100%;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		}
+		.logind_childs > div > img {
+		  width: 80%;
+		}
+		.logind_childs > input {
+			box-sizing: border-box;
+			padding:0 0.3rem;
+		  	width:85%;
+		  	height:100%;
+		  	font: 500 0.64rem AdobeHeitiStd-Regular;
+		  	color: #999999;
+		  	border: none;
+		  	outline: none;
+		}
+		
+		.logind_childs:nth-child(2) {
+		  margin-top: 1rem;
+		}
+		
+		.logind_childs:nth-child(2) > div > img {
+		  width: 60%;
+		}
+		
+		#loging {
+		  width: 60%;
+		  text-align: center;
+		  color: #002ded;
+		  font-size: 0.64rem;
+		  margin: 1rem auto 0;
+		  padding: 0.5rem 0;
+		  background-color: #fee74a;
+		  border-radius: 1rem;
+		}
+		
+		.login_p {
+		  color: white;
+		  font-size:0.64rem;
+		  margin-top: 1rem;
+		  text-align: right;
+		}
+	</style>
+	<body>
+		<div class="logins">
+			<div>
+				<img src="../../img/login_7.png" alt="" />
+			</div>
+			<div class="logins-childs">
+				<img src="../../img/login_2.png" alt="" />
+			</div>
+		</div>
+		<div class="logind">
+			<div>已有账号</div>
+			<div>
+				<div class="logind_childs">
+					<div><img src="../../img/login_3.png" class="login_3" alt="" /></div>
+					<input type="text" id="tel" placeholder="请输入手机号" class="login_inputs" value=""/>
+				</div>
+				<div class="logind_childs">
+					<div><img src="../../img/login_4.png" class="login_4" alt="" /></div>
+					<input type="text" id="pass" placeholder="请输入密码" class="login_inputs"/>
+				</div>
+			</div>
+			<div id="loging">一键绑定</div>
+			<div class="login_p">
+				<span>立即注册</span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$("#loging").click(function(){
+			var pho = $('#tel').val(),pass = $('#pass').val();
+			if(pho==""||pass==""){
+				alert("填写不可为空");
+			}else{
+				var df=/^\d+$/;//正整数包括0
+				if(!df.test(pho)){
+					alert("账号格式错误！");
+				}else{
+					window.location.href="login.html";
+				}
+			}
+		})
+	</script>
+</html>

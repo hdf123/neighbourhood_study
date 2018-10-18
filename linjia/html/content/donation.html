@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>捐赠</title>
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		.headers{
+			background-color: #ffffff;
+			box-shadow: 0rem 0rem 0.213rem 0rem rgba(102, 102, 102, 0.18);
+		}
+		.headers>div{
+			height:2rem;
+		}
+		section{
+			top:2rem;
+			bottom: 0rem;
+		}
+		section>div>div{
+			width:95%;
+			margin:0.5rem auto 0;
+			box-shadow: 0rem 0rem 0.29rem 0.051rem rgba(0, 0, 0, 0.15);
+			border-radius: 0.213rem;
+			position:relative;
+			top:0;
+			left:0;
+		}
+		section>div>div>img{
+			width:100%;
+			height:8rem;
+		}
+		section>div>div>div:nth-child(2){
+			margin:0 auto;
+			font-size: 0.64rem;
+			position:absolute;
+			top:1rem;
+			left:25%;
+		}
+		section>div>div>div:nth-child(3){
+			width:90%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.512rem;
+			position:absolute;
+			bottom:1rem;
+			left:5%;
+			color:#ffffff;
+		}
+		section>div>div>div:nth-child(3)>div:nth-child(2){
+			color:#ffffff;
+			padding:0.2rem 0.5rem;
+			background-color: #607cf4;
+			box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(96, 124, 244, 0.24);
+			border-radius: 0.48rem;
+			outline:none;
+		}
+	</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>捐赠</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<div>
+					<img src="../../img/com_15.png" alt="" />
+					<div>为平安希望小学捐赠图书</div>
+					<div>
+						<div>
+							已捐赠图书：<span>99本</span>
+						</div>
+						<div class="participate">参与捐赠1</div>
+					</div>
+				</div>
+				<div>
+					<img src="../../img/com_15.png" alt="" />
+					<div>为平安希望小学捐赠图书</div>
+					<div>
+						<div>
+							已捐赠图书：<span>99本</span>
+						</div>
+						<div class="participate">参与捐赠2</div>
+					</div>
+				</div>
+				<div>
+					<img src="../../img/com_15.png" alt="" />
+					<div>为平安希望小学捐赠图书</div>
+					<div>
+						<div>
+							已捐赠图书：<span>99本</span>
+						</div>
+						<div class="participate">参与捐赠3</div>
+					</div>
+				</div>
+			</div>
+		</section>
+<script type="text/javascript">
+//			获取捐赠学校列表接口：donation/manager/school/list
+
+	$(function(){
+		var userid = JSON.parse(localStorage.getItem('userId'));//用户id 
+		ajaxGet("donation/manager/school/list", 'get',{token:userid.token}, function(data){
+			console.log(data);
+			var ksd="",data=data.data;
+			$.each(data, function(key,val) {
+				ksd+='<div data-school_id='+val.school_Id+'>'
+					+'<img src='+val.school_price+' alt="" />'
+					+'<div>为'+val.school_name+'捐赠图书</div>'
+					+'<div>'
+						+'<div>'
+							+'：<span>'+val.donation_books_num+'本</span>'
+						+'</div>'
+						+'<div class="participate" data-sch='+key+'>参与捐赠</div>'
+					+'</div>'
+				+'</div>';
+			});
+			$("section>div").html(ksd);
+			$("section").on("click",".participate",function(){
+				var index=$(this).data("sch");
+				console.log(data[index]);
+				localStorage.setItem('schs', JSON.stringify(data[index]));
+				
+				window.location.href="./participate.html";
+			})
+		},function(err) {
+			console.log(err);
+		})
+	})
+</script>
+	</body>
+</html>

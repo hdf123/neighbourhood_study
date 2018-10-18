@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>退出登录</title>
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css"/>
+		<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		* {
+		  margin: 0;
+		  padding: 0;
+		  box-sizing: border-box;
+		  font-size: 0.64rem;
+		}
+		.headers {
+		  background-color: #ffffff;
+		  box-shadow: 0rem 0rem 0.213rem 0rem rgba(102, 102, 102, 0.3);
+		}
+		.headers > div {
+		  height: 2rem;
+		}
+		.headers > div > div > span {
+		  font-size: 0.768rem;
+		}
+		section {
+		  top: 2rem;
+		  bottom: 0;
+		}
+		#cancellation{
+		  width: 80%;
+		  padding: 0.5rem 0;
+		  margin: 20rem auto 0;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  color: white;
+		  font-size: 0.768rem;
+		  background: #F75000;
+		  box-shadow: 0rem 0rem 0.213rem 0rem rgba(102, 102, 102, 0.2);
+		}
+	</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+					<span>返回</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<div id="cancellation">退出登录</div>
+			</div>
+		</section>
+<script type="text/javascript">
+	$("#cancellation").on("click",function(){
+		localStorage.setItem('logs', JSON.stringify());
+		window.location.href="../login/login.html";
+	})
+</script>
+	</body>
+</html>

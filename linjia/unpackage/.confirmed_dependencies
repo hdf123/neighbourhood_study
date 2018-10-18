@@ -1,0 +1,33 @@
+{
+	"index.html": {
+		"refer": [
+			"html/login/login.html",
+			"html/home/home.html"
+		]
+	},
+	"html/home/home.html": {
+		"refer": [
+			"html/content/study.html"
+		]
+	},
+	"html/login/login.html": {
+		"refer": [
+			"html/home/home.html"
+		]
+	},
+	"html/content/study.html": {
+		"refer": [
+			"html/content/details.html"
+		]
+	},
+	"html/content/details.html": {
+		"refer": [
+			"html/content/submit.html"
+		]
+	},
+	"html/content/submit.html": {
+		"refer": [
+			"html/content/settlement.html"
+		]
+	}
+}
