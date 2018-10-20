@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>QQ</title>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			box-sizing: border-box;
+		}
+		html,body{
+			overflow-y:hidden;
+		}
+		#btn{
+		    width:90%;
+		    padding: 0.8rem 0.3rem;
+		    background: #00a7f0;
+		    color: white;
+		    border: none;
+		    border-radius:0.2rem;
+		    position: absolute;
+		    left:5%;
+		    bottom:0;
+		    z-index:999;
+		}
+		#sub_frame{
+			width:100%;
+			height:25rem;
+		}
+	</style>
+	<body>
+		<button id="btn">返回首页</button>
+		<iframe src="" id="sub_frame" frameborder="0"></iframe>
+<script type="text/javascript">
+	ajaxGet( "qq/login",'post',{state:111},function(data){
+		$("#sub_frame").attr("src",data.data);
+	},function(err){
+		console.log(err);
+	})
+	setInterval(function(){
+		ajaxGet("qq/get/return/from/redis",'post',{state:111},function(data){
+			console.log(data.data);
+		},function(err){
+			console.log(err);
+		})
+	},2000)
+	
+	
+	
+	
+	/*function getQueryString(name){
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]); return null;
+	}
+	var ts= getQueryString("order"); //获取地址栏参数
+	$("#sub_frame").attr("src","http://linshuchina.com/weixinpay/weixinH5.html?order="+ts);
+	var heights=$(window).height();
+	$("#sub_frame").css("height",heights);
+	$("#btn").click(function(){
+		window.location.href="../home/home.html";
+	})*/
+</script>
+	</body>
+</html>

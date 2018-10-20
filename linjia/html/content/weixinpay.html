@@ -14,7 +14,7 @@
 			box-sizing: border-box;
 		}
 		html,body{
-			overflow-y: hidden;
+			overflow-y:hidden;
 		}
 		#btn{
 		    width:90%;
@@ -26,6 +26,7 @@
 		    position: absolute;
 		    left:5%;
 		    bottom:0;
+		    z-index:999;
 		}
 		#sub_frame{
 			width:100%;
@@ -33,8 +34,15 @@
 	</style>
 	<body>
 		<button id="btn">返回首页</button>
-		<iframe src="b2.html" id="sub_frame" frameborder="0"></iframe>
+		<iframe src="" id="sub_frame" frameborder="0"></iframe>
 <script type="text/javascript">
+	function getQueryString(name){
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]); return null;
+	}
+	var ts= getQueryString("order"); //获取地址栏参数
+	$("#sub_frame").attr("src","http://linshuchina.com/weixinpay/weixinH5.html?order="+ts);
 	var heights=$(window).height();
 	$("#sub_frame").css("height",heights);
 	$("#btn").click(function(){

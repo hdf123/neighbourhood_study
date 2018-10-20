@@ -180,7 +180,9 @@
 				var ret=returnCitySN['cip'];
 				console.log(ret);
 				var arr=[userid.token,orderId.orderId,orderId.borrow.totalFee*100,returnCitySN['cip']];
-				window.location.href="http://linshuchina.com/weixinpay/weixinH5.html?order="+arr;
+//				window.location.href="http://linshuchina.com/weixinpay/weixinH5.html?order="+arr;
+				window.location.href="./weixinpay.html?order="+arr;
+//				window.location.href="./aa.html?order="+arr;
 			}else{
 				pays();
 			}

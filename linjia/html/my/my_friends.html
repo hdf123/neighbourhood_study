@@ -11,75 +11,112 @@
 		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-	<style>
-		.headers {
-		  background-color: #ffffff;
-		  box-shadow: 0rem 0rem 0.427rem 0rem rgba(102, 102, 102, 0.38);
-		}
-		.headers > div {
-		  height:2rem;
-		}
-		.headers > div > div:nth-child(2) {
-		  width: 3rem;
-		  color: #607CF4;
-		  font-size:1.2rem;
-		}
-		section {
-		  top:2rem;
-		  bottom: 0;
-		}
-		section > div > div:nth-child(1) {
-		  	box-sizing: border-box;
-		  	width: 100%;
-		  	height:2rem;
-		  	padding-left: 2rem;
-		  	margin: 0.2rem 0;
-		  	display: flex;
-		  	align-items: center;
-		  	color: #607CF4;
-		  	font: 600 1.2rem AdobeHeitiStd-Regular;
-			background-color: #ffffff;
-			box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(173, 173, 173, 0.22);
-			border-radius: 0.213rem;
-		}
-		section > div > div:nth-child(1) > span {
-		  color: black;
-		  font: 500 0.64rem AdobeHeitiStd-Regular;
-		  margin-left: 1rem;
-		}
-		.buddy {
-		  width: 90%;
-		  margin: 0 auto;
-		}
-		.buddy > li {
-		  	width: 100%;
-		  	margin: 0.5rem auto;
-		  	display: flex;
-			background-color: #ffffff;
-			box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(173, 173, 173, 0.22);
-			border-radius: 0.96rem;
-		}
-		.buddy > li > div:nth-child(1) {
-		  	box-sizing: border-box;
-		  	width:2.2rem;
-		  	height:2.2rem;
-		  	display: flex;
-		  	justify-content: center;
-		  	align-items: center;
-		  	margin: 0.05rem 0.2rem;
-		  	border-radius: 50%;
-		  	overflow: hidden;
-		}
-		.buddy > li > div:nth-child(1) > img {
-		  width: 100%;
-		}
-		.buddy > li > div:nth-child(2) {
-		  display: flex;
-		  align-items: center;
-		  margin-left: 0.3rem;
-		  font-size: 0.64rem;
-		}
-	</style>
+<style>
+	.headers {
+	  background-color: #ffffff;
+	  box-shadow: 0rem 0rem 0.427rem 0rem rgba(102, 102, 102, 0.38);
+	}
+	.headers > div {
+	  height:2rem;
+	}
+	.headers > div > div:nth-child(2) {
+	  width: 3rem;
+	  color: #607CF4;
+	  font-size:1.2rem;
+	}
+	section {
+	  top:2rem;
+	  bottom: 0;
+	}
+	section > div > div:nth-child(1) {
+	  	box-sizing: border-box;
+	  	width: 100%;
+	  	height:2rem;
+	  	padding-left: 2rem;
+	  	margin: 0.2rem 0;
+	  	display: flex;
+	  	align-items: center;
+	  	color: #607CF4;
+	  	font: 600 1.2rem AdobeHeitiStd-Regular;
+		background-color: #ffffff;
+		box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(173, 173, 173, 0.22);
+		border-radius: 0.213rem;
+	}
+	section > div > div:nth-child(1) > span {
+	  color: black;
+	  font: 500 0.64rem AdobeHeitiStd-Regular;
+	  margin-left: 1rem;
+	}
+	.buddy {
+	  	width: 100%;
+	}
+	.buddy > li {
+	  	width: 100%;
+	  	border-bottom: 1px solid #eeeeee;
+	  	box-shadow: 0rem 0.1rem 0.073rem 0.073rem rgba(173, 173, 173, 0.02);
+	}
+	.buddy > li > div {
+	  	width: 90%;
+	  	height:2.5rem;
+	  	display: flex;
+	  	align-items: center;
+	  	margin: 0 auto;
+	  	position: relative;
+	}
+	.buddy > li > div > div:nth-child(1) {
+	  	width: 2rem;
+	  	height: 2rem;
+	  	border-radius:50%;
+	  	overflow:hidden;
+	}
+	.buddy > li > div > div:nth-child(1) > img {
+	  	width: 100%;
+	  	height: 100%;
+	}
+	.buddy > li > div > div:nth-child(2) {
+		width:55%;
+	  	height:2rem;
+	  	display: flex;
+	  	flex-direction: column;
+	  	justify-content: space-around;
+	  	margin-left: 0.25rem;
+	}
+	.buddy > li > div > div:nth-child(2) > div {
+		width:7.8rem;
+		height:50%;
+		line-height:1rem;
+	  	overflow: hidden;
+    	text-overflow:ellipsis;
+    	white-space: nowrap;
+	}
+	.buddy > li > div > div:nth-child(2) > div:nth-child(1) {
+	  	font: normal 0.7rem PingFang-SC-Medium;
+	}
+	.buddy > li > div > div:nth-child(2) > div:nth-child(2) {
+	  	font-size:0.5rem;
+	}
+	.buddy > li > div > div:nth-child(3) {
+	  	height: 2rem;
+	  	position: absolute;
+	  	top: 0.25rem;
+	  	right:0.5rem;
+	  	display: flex;
+	  	flex-direction: column;
+	  	align-items: center;
+	  	justify-content: center;
+	  	font:500 0.5rem PingFang-SC-Medium;
+	}
+	.buddy > li > div > div:nth-child(3) > div:nth-child(2) {
+	  	padding: 0 0.08rem;
+	  	border-radius: 0.2rem;
+	  	color: white;
+	  	display:flex;
+	  	background: #FB4A33;
+	}
+	.buddy > li:last-child {
+	  	margin-bottom: 0;
+	}
+</style>
 	<body>
 		<header class="headers">
 			<div>
@@ -95,7 +132,21 @@
 					<span>邀请好友</span>
 				</div>
 				<ul class="buddy">
-					
+					<li>
+						<div>
+							<div>
+								<img src="../../img/home_03.png" alt="" />
+							</div>
+							<div>
+								<div>徐徐</div>
+								<div>你在干什么</div>
+							</div>
+							<div>
+								<div>2046</div>
+								<div>99+</div>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</section>
@@ -108,14 +159,27 @@
 			userId:userid.phone//手机号获取好友列表
 		}
 		ajaxGet("wangyi/friendsList",'get',transfer,function(data){
+			console.log(data);
+			var ksd="";
 			for(i in data){
-				$(".buddy").append('<li>'
-										+'<div>'
-											+'<img src='+data[i].image+' />'
-										+'</div>'
-										+'<div>'+data[i].nickname+'</div>'
-									+'</li>');
+				ksd+='<li>'
+							+'<div>'
+								+'<div>'
+									+'<img src='+data[i].image+' alt="" />'
+								+'</div>'
+								+'<div>'
+									+'<div>'+data[i].nickname+'</div>'
+									+'<div>你在干什么</div>'
+								+'</div>'
+								+'<div>'
+									+'<div>2046</div>'
+									+'<div>99+</div>'
+								+'</div>'
+							+'</div>'
+						+'</li>';				
+									
 			}
+			$(".buddy").html(ksd);
 			$(".buddy").on("click","li",function(){
 				var index=$(this).index();
 				for(i in data){

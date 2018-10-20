@@ -7,27 +7,86 @@
 	},
 	"html/home/home.html": {
 		"refer": [
-			"html/content/study.html"
+			"html/content/study.html",
+			"html/home/my.html",
+			"html/home/Introduction.html"
 		]
 	},
 	"html/login/login.html": {
 		"refer": [
-			"html/home/home.html"
+			"html/home/home.html",
+			"html/login/a1.html"
 		]
 	},
 	"html/content/study.html": {
 		"refer": [
-			"html/content/details.html"
+			"html/content/details.html",
+			"html/home/home.html",
+			"html/home/my.html"
 		]
 	},
 	"html/content/details.html": {
 		"refer": [
-			"html/content/submit.html"
+			"html/content/submit.html",
+			"html/content/study.html"
 		]
 	},
 	"html/content/submit.html": {
 		"refer": [
-			"html/content/settlement.html"
+			"html/content/settlement.html",
+			"html/content/details.html"
+		]
+	},
+	"html/content/settlement.html": {
+		"refer": [
+			"html/content/weixinpay.html",
+			"html/content/aa.html",
+			"html/content/thirds.html"
+		]
+	},
+	"html/content/thirds.html": {
+		"refer": [
+			"html/home/home.html"
+		]
+	},
+	"html/content/weixinpay.html": {
+		"refer": [
+			"html/home/home.html"
+		]
+	},
+	"html/home/my.html": {
+		"refer": [
+			"html/my/borrowing.html",
+			"html/content/study.html",
+			"html/home/home.html",
+			"html/my/my_wallet.html",
+			"html/my/order.html",
+			"html/my/cancellation.html"
+		]
+	},
+	"html/my/borrowing.html": {
+		"refer": [
+			"html/home/my.html"
+		]
+	},
+	"html/my/my_wallet.html": {
+		"refer": [
+			"html/home/my.html"
+		]
+	},
+	"html/home/Introduction.html": {
+		"refer": [
+			"html/home/home.html"
+		]
+	},
+	"html/my/order.html": {
+		"refer": [
+			"html/home/my.html"
+		]
+	},
+	"html/my/cancellation.html": {
+		"refer": [
+			"html/login/login.html"
 		]
 	}
 }

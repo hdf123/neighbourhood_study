@@ -89,8 +89,25 @@
 					<img src="img/pay_01.png" />
 				</div>
 				<div>支付失败</div>
-				<div>支付失败的原因</div>
+				<div>失败原因:<span class="srrs"></span></div>
 			</div>
 		</section>
+		
+<script type="text/javascript">
+//获取失败信息
+	var _t = getQueryString("errs"); //获取地址栏参数
+	var titles = decodeURI(_t); //只需要转一次码
+	//获取地址栏参数的方法
+	function getQueryString(name){
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]); return null;
+	}
+	if(titles==null||titles==undefined){
+		titles="";
+	}else{
+		$(".srrs").html(titles);
+	}
+</script>
 	</body>
 </html>

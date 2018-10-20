@@ -192,9 +192,29 @@
 			}
 		}
 		$("#qq").click(function(){
-			$.ajax({
+			window.location.href="a1.html";
+			/*ajaxGet( "qq/login",'post',{state:111},function(data){
+				window.location.href=data.data;
+				console.log(data);
+			},function(err){
+				console.log(err);
+			})
+			setInterval(function(){
+				ajaxGet("qq/get/return/from/redis",'post',{state:222},function(data){
+					console.log(data);
+				},function(err){
+					console.log(err);
+				})
+			},2000)*/
+			
+			
+			
+			
+			
+			
+			/*$.ajax({
 				type:"post",
-				url:"https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101504887&redirect_uri=http://localhost:8020/邻家书房/html/login",
+				url:"qq/login",
 		 		xhrFields:{
 		           withCredentials:true
 		       	},
@@ -205,7 +225,7 @@
 		        error: function(error) {
 		            console.log(error);         
 		        }
-			});
+			});*/
 			
 			
 			

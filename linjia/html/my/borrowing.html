@@ -136,7 +136,7 @@
 		  font-size:0.64rem;
 		  background-color: #f460ad;
 		  box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(96, 124, 244, 0.24);
-		  border-radius: 0.48rem;
+		  border-radius: 0.22rem;
 		}
 		.brodele >p{
 		  	color: white;
@@ -406,7 +406,13 @@
 //去还书
 			$(".bor_tab .borrows:eq(1)").on("click",".brodele>span",function(){
 				var loanid=$(this).closest(".brod").data("loanid");//借书人id
-				ajaxGet("my/toReturn/book",'get',{token:userid.token,ownerid:loanid},function(data){
+				var ids=$(this).closest(".brod").data("ids");//图书id
+				var kksd={
+					token:userid.token,
+					ownerid:loanid,
+					bookid:ids
+				}
+				ajaxGet("my/toReturn/book",'get',kksd,function(data){
 					var data=data.data;
 					console.log(data);
 					alert("还书地址："+data.address+"\n联系人："+data.nickname+"\n联系电话："+data.phone);
@@ -422,6 +428,7 @@
 			if(ksk!=undefined){
 				kks='<p>'+ksk+'</p>';
 			}
+			console.log(nearly);
 			for(i in nearly){
 				if(nearly[i].loanId==undefined){
 					nearly[i].loanId=nearly[i].ownerId;

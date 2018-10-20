@@ -149,35 +149,112 @@
 			"html/home/home.html": {
 				"resources": [],
 				"refer": [
-					"html/content/study.html"
+					"html/content/study.html",
+					"html/home/my.html",
+					"html/home/Introduction.html"
 				],
 				"priority": 0
 			},
 			"html/login/login.html": {
 				"resources": [],
 				"refer": [
-					"html/home/home.html"
+					"html/home/home.html",
+					"html/login/a1.html"
 				],
 				"priority": 0
 			},
 			"html/content/study.html": {
 				"resources": [],
 				"refer": [
-					"html/content/details.html"
+					"html/content/details.html",
+					"html/home/home.html",
+					"html/home/my.html"
 				],
 				"priority": 0
 			},
 			"html/content/details.html": {
 				"resources": [],
 				"refer": [
-					"html/content/submit.html"
+					"html/content/submit.html",
+					"html/content/study.html"
 				],
 				"priority": 0
 			},
 			"html/content/submit.html": {
 				"resources": [],
 				"refer": [
-					"html/content/settlement.html"
+					"html/content/settlement.html",
+					"html/content/details.html"
+				],
+				"priority": 0
+			},
+			"html/content/settlement.html": {
+				"resources": [],
+				"refer": [
+					"html/content/weixinpay.html",
+					"html/content/aa.html",
+					"html/content/thirds.html"
+				],
+				"priority": 0
+			},
+			"html/content/thirds.html": {
+				"resources": [],
+				"refer": [
+					"html/home/home.html"
+				],
+				"priority": 0
+			},
+			"html/content/weixinpay.html": {
+				"resources": [],
+				"refer": [
+					"html/home/home.html"
+				],
+				"priority": 0
+			},
+			"html/home/my.html": {
+				"resources": [],
+				"refer": [
+					"html/my/borrowing.html",
+					"html/content/study.html",
+					"html/home/home.html",
+					"html/my/my_wallet.html",
+					"html/my/order.html",
+					"html/my/cancellation.html"
+				],
+				"priority": 0
+			},
+			"html/my/borrowing.html": {
+				"resources": [],
+				"refer": [
+					"html/home/my.html"
+				],
+				"priority": 0
+			},
+			"html/my/my_wallet.html": {
+				"resources": [],
+				"refer": [
+					"html/home/my.html"
+				],
+				"priority": 0
+			},
+			"html/home/Introduction.html": {
+				"resources": [],
+				"refer": [
+					"html/home/home.html"
+				],
+				"priority": 0
+			},
+			"html/my/order.html": {
+				"resources": [],
+				"refer": [
+					"html/home/my.html"
+				],
+				"priority": 0
+			},
+			"html/my/cancellation.html": {
+				"resources": [],
+				"refer": [
+					"html/login/login.html"
 				],
 				"priority": 0
 			}
@@ -289,7 +366,6 @@
 				"html/my/images/arclist/82.gif",
 				"html/content/images/arclist/71.gif",
 				"html/home/css/message.scss",
-				"html/my/order.html",
 				"css/demo.css",
 				"html/home/images/arclist/19.gif",
 				"html/home/latest_activity.html",
@@ -370,7 +446,6 @@
 				"html/home/images/arclist/39.gif",
 				"html/home/my_speak.html",
 				"css/font_787547_girkphi811k/demo_symbol.html",
-				"html/my/my_wallet.html",
 				"html/login/css/login.css",
 				"img/home_02.png",
 				"html/content/images/arclist/46.gif",
@@ -410,7 +485,6 @@
 				"html/my/record.html",
 				"html/login/Forgot.html",
 				"html/my/images/arclist/53.gif",
-				"html/my/cancellation.html",
 				"html/home/images/arclist/31.gif",
 				"html/content/css/webiaoqing_2.css",
 				"html/my/images/arclist/95.gif",
@@ -488,7 +562,6 @@
 				"html/home/images/arclist/25.gif",
 				"html/home/css/latest_activity.scss",
 				"html/content/images/arclist/32.gif",
-				"html/my/borrowing.html",
 				"html/my/images/arclist/47.gif",
 				"html/home/images/arclist/56.gif",
 				"html/content/images/arclist/40.gif",
@@ -636,7 +709,6 @@
 				"html/home/images/arclist/73.gif",
 				"html/my/images/arclist/34.gif",
 				"html/my/images/arclist/10.gif",
-				"html/content/thirds.html",
 				"html/home/css/personal_dynamic.css",
 				"html/content/images/arclist/64.gif",
 				"html/my/images/arclist/31.gif",
@@ -682,7 +754,6 @@
 				"html/my/images/arclist/96.gif",
 				"html/my/images/arclist/55.gif",
 				"html/home/his.html",
-				"html/home/my.html",
 				"html/home/images/arclist/21.gif",
 				"html/my/images/arclist/40.gif",
 				"html/my/borr_message.html",

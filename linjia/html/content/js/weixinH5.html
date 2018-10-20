@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>支付页</title>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+<script type="text/javascript">
+//订单信息
+	var order=getQueryString("order");
+	//	token,订单号,价格,ip
+	var arr=order.split(",");
+	function getQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]); return null;
+	}
+//支付接口
+	//如果订单已支付
+		$.ajax({
+			type:"post",
+			url:"http://39.104.127.252:8081/weixin/h5/get/order/status",
+	       	dataType:"json",
+	       	data:{
+	       		token:arr[0],//token
+	       		out_trade_no:arr[1],//订单号
+	       		total_fee:arr[2],//价格
+	       		ip:arr[3]//ip
+	       	},
+			success: function(data){
+				setTimeout(function(){
+					if(data.status==300){
+						window.location.href="http://linshuchina.com/weixinpay/success.html";
+					}else{
+						$.ajax({
+							type:"post",
+							url:"http://39.104.127.252:8081/weixin/h5/pay",
+					       	dataType:"json",
+					       	data:{
+					       		token:arr[0],//token
+					       		out_trade_no:arr[1],//订单号
+					       		total_fee:arr[2],//价格
+					       		ip:arr[3]//ip
+					       	},
+							success: function(data) {
+								if(data.status==200){
+									window.location.href=data.data;//到微信支付
+								}else{
+									if(data.status==300){//成功页面
+						        		window.location.href="http://linshuchina.com/weixinpay/success.html";
+						        	}else{//失败页面
+						        		var err=encodeURI(encodeURI(data.msg));
+						        		window.location.href="http://linshuchina.com/weixinpay/fail.html?errs="+err;
+						        	}
+								}
+							},
+					        error: function(err) {
+				        		var err=encodeURI(encodeURI(data.msg));
+				        		window.location.href="http://linshuchina.com/weixinpay/fail.html?errs="+err;
+					        }
+						});
+					}
+				},1000)
+			},error: function(err) {
+	        	window.location.href="http://linshuchina.com/weixinpay/fail.html";
+	        }
+		});
+</script>
+	</body>
+</html>

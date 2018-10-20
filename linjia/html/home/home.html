@@ -310,7 +310,7 @@
 					<div class="swiper-container" id="swiper2">
 					    <div class="swiper-wrapper">
 					        <div class="swiper-slide">
-					        	<img src="../../img/home_17.png" alt="" />
+					        	<img src="" alt="" />
 					        </div>
 					        <div class="swiper-slide">
 					        	<img src="../../img/home_17.png" alt="" />
@@ -467,9 +467,10 @@
 				})
 //好友书房
 				var friends="";
-				for(i in data.friend){
-					var imges=data.friend[i].images.split(",");//仅展示第一张图片
-					friends+='<div class="friend" data-study='+data.friend[i].id+'>'
+				var friend=data.friend.splice(0,2);//展示前两个好友
+				for(i in friend){
+					var imges=friend[i].images.split(",");//仅展示第一张图片
+					friends+='<div class="friend" data-study='+friend[i].id+'>'
 								+'<img src='+imges[0]+' alt="" />'
 							+'</div>';
 				}
@@ -590,7 +591,7 @@
 	document.addEventListener("error", function (e) {
 	  var elem = e.target;
 	  if (elem.tagName.toLowerCase() == 'img') {
-	    elem.src = "../../img/home_17.png";
+//	    elem.src = "../../img/home_17.png";
 	  }
 	}, true);
 //查看更多
@@ -613,13 +614,13 @@
 //banner
 	$("#swiper1 .swiper-slide").click(function(){
 		var index=$(this).index();
-		/*if(index==0){//最新活动
-			window.location.href="latest_activity.html";
+		if(index==0){//最新活动
+//			window.location.href="latest_activity.html";
 		}else if(index==1){//公司介绍
 			window.location.href="Introduction.html";
 		}else if(index==2){//借阅说明
-			window.location.href="instructions.html";
-		}else */if(index==3){//捐赠
+//			window.location.href="instructions.html";
+		}else if(index==3){//捐赠
 			window.location.href="../content/donation.html";
 		}
 	})

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>公司介绍</title>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<link rel="stylesheet" href="../../css/layout.css" />
+		<link rel="stylesheet" href="css/latest_activity.css" />
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+<style>
+	.name{
+		text-align:center;
+		margin:0.6rem auto;
+	}
+	.sects{
+		text-indent:2em;
+		font:normal 0.512rem AdobeHeitiStd-Regular;
+		line-height:1rem;
+	}
+	section>div{
+		width:90%;
+		margin:0 auto;
+	}
+	.kf{
+		margin-top:0.5rem;
+		font:normal 0.6rem AdobeHeitiStd-Regular;
+	}
+</style>
+	<body>
+		<header class="headers">
+			<div>
+				<div class="iconfont icon-houtui" onclick="javascript:history.go(-1,'../home.html');">
+					<span>公司介绍</span>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div>
+				<h6 class="name">邻家书房</h6>
+				<p class="sects">
+					华为是全球领先的ICT（信息与通信）基础设施和智能终端提供商，致力于把数字世界带入每个人、
+					每个家庭、每个组织，构建万物互联的智能世界。我们在通信网络、IT、智能终端和云服务等领域
+					为客户提供有竞争力、安全可信赖的产品、解决方案与服务，与生态伙伴开放合作，持续为客户创造
+					价值，释放个人潜能，丰富家庭生活，激发组织创新。华为坚持围绕客户需求持续创新，加大基础研究
+					投入，厚积薄发，推动世界进步。华为成立于1987年，是一家由员工持有全部股份的民营企业，目前有1
+					8万员工，业务遍及170多个国家和地区。
+				</p>
+				<div class="kf">
+					客服电话：<span>1541654646</span>
+				</div>
+			</div>
+		</section>
+		
+		
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			type:"get",
+			url:"./json/a.json",
+			dataType : "json",
+			success:function(data){
+				console.log(data);
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});
+		
+		
+		
+		/*ajaxGet("book/getby/classification", 'get',hobbyx, function(data){
+			console.log(data);
+		},function(err) {
+			console.log(err);
+		})*/
+	})
+</script>
+	</body>
+</html>
