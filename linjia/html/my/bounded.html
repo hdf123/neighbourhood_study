@@ -183,6 +183,9 @@
 					}
 					ajaxGet( "wallet/withdraw",'post',transfer,function(data){
 						console.log(data.message);
+						if(data.status==985){
+							window.location.href="../login/login.html";
+						}
 						window.location.href="successful.html";
 					},function(err){
 						console.log(err);

@@ -232,6 +232,9 @@
 		             reader.onload = function(e){
 		             	var base=this.result;
 						ajaxGet( "base64/upload",'post',{token:userid.token,base64:base},function(data){
+							if(data.status==985){
+								window.location.href="../login/login.html";
+							}
 							$(".asd").append('<img src='+data.data+' alt="" />');
 						},function(err){
 							console.log(err);
@@ -266,6 +269,9 @@
 			    }
 		    	ajaxGet( "dynamic/addDynamic",'post',transfer,function(data){
 		    		console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 		    		alert(data.message);
 		    		window.location.href="../home/community.html";
 		    	},function(err){

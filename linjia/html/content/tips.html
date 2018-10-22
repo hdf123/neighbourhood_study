@@ -136,6 +136,9 @@
 			userId:userid.userId,
 		}
 		ajaxGet("my/all",'get',transfer,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var data=data.data,updata="";
 			console.log(data);
 			for(i in data){
@@ -161,6 +164,9 @@
 				}
 				ajaxGet("my/tips/delete",'get',dataObj,function(data){
 					console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					window.location.reload();//重新加载当前页面
 				},function(err){
 					console.log(err);

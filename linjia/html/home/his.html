@@ -96,6 +96,9 @@
 			toId:dynamic1.id					//用户id
 		}
 		ajaxGet( "dynamic/oneUserDynamic",'post',dataObjs,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var addks='';
 			$.each(data,function (key,val){
 				if(val.picture==""){
@@ -233,6 +236,9 @@
 	        	}
 				ajaxGet(url,'post',transfer,function(data){
 					console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					if(data.success==true){
 						if(color=="rgb(0, 0, 255)"){
 							gh.children("span").text(dd-1)
@@ -270,6 +276,9 @@
 		  		}
 		  		ajaxGet("dynamic/addComment",'post',transfer,function(data){
 		  			console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 		  			$("#sendss").hide();
 //		  			window.location.reload();//重新加载当前页面
 		  		},function(err){
@@ -293,6 +302,9 @@
 					userId:userid.userId
 				}
 				ajaxGet("dynamic/selectComment",'get',transfer,function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					var sk='';
 					for(i in data){
 						sk+='<div>'

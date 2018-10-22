@@ -287,6 +287,9 @@
 		}
 //订单查询
 		ajaxGet( "order/findSellerOrdet",'get',transfer,function(data){//卖家
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var se='';
 			for(i in data){
 				if(data[i].status==2){
@@ -363,6 +366,9 @@
 					}
 					ajaxGet("order/updateStatus",'post',transfer,function(data){//卖家
 						console.log(data);
+						if(data.status==985){
+							window.location.href="../login/login.html";
+						}
 						window.location.reload();//重新加载当前页面
 						$(".popupsd").hide();
 						$(".popupsd>div:nth-child(1)").hide();
@@ -385,6 +391,9 @@
 			buyerid:userid.userId
 		}
 		ajaxGet("order/findBuyerOrdet",'get',trfs,function(data){//买家
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var buys='';
 			for(i in data){
 				if(data[i].status==2){
@@ -460,6 +469,9 @@
 				console.log(transfer);
 				ajaxGet("order/updateStatus",'post',transfer,function(data){//卖家
 					console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					window.location.href="goods.html";
 				},function(err){
 					console.log(err);

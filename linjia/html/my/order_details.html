@@ -97,6 +97,9 @@
 		}
 		ajaxGet("order/findOneOrdet",'post',ksd,function(data){
 			console.log(data);
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			$(".shows>div").html('<img src='+data.image+' alt="" />');
 			var sk="";
 			if(data.status==2){

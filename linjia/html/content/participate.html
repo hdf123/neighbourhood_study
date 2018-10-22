@@ -212,6 +212,9 @@
 		var userid = JSON.parse(localStorage.getItem('userId'));//用户id 
 		var schs = JSON.parse(localStorage.getItem('schs'));//学校信息
 		ajaxGet("donation/manager/school/details", 'get',{token:userid.token,schoolId:schs.school_Id}, function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var data=data.data;
 			console.log(data);
 //			data.donation_books_num=1100;//捐赠数量

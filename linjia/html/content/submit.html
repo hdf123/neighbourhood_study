@@ -179,6 +179,9 @@
 		$("#money").html(borrows.price);
 //提交订单信息
 		ajaxGet("book/details?bookId="+borrows.itemId,'get',{token:userid.token},function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			$("#sub_adds").click(function(){
 //			payment 实付金额、userId 买家 ID、sellerId 卖家 ID、receiverAreaName 收货地址、
 //			receiverMobile 收货手机号、receiver 收货人姓名、 itemId、商品 ID、bookName 图书名、
@@ -209,6 +212,9 @@
 					alert("请填写完整的订单信息");
 				}else{
 					ajaxGet("book/create/order",'post',transfer,function(data){
+						if(data.status==985){
+							window.location.href="../login/login.html";
+						}
 						var data=data.data;
 						console.log(data);
 						var orderId={

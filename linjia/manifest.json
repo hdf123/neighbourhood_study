@@ -151,7 +151,8 @@
 				"refer": [
 					"html/content/study.html",
 					"html/home/my.html",
-					"html/home/Introduction.html"
+					"html/home/Introduction.html",
+					"html/home/community.html"
 				],
 				"priority": 0
 			},
@@ -159,7 +160,8 @@
 				"resources": [],
 				"refer": [
 					"html/home/home.html",
-					"html/login/a1.html"
+					"html/login/a1.html",
+					"html/login/jump.html"
 				],
 				"priority": 0
 			},
@@ -219,7 +221,8 @@
 					"html/home/home.html",
 					"html/my/my_wallet.html",
 					"html/my/order.html",
-					"html/my/cancellation.html"
+					"html/my/cancellation.html",
+					"html/home/Found.html"
 				],
 				"priority": 0
 			},
@@ -257,6 +260,36 @@
 					"html/login/login.html"
 				],
 				"priority": 0
+			},
+			"html/login/jump.html": {
+				"resources": [],
+				"refer": [
+					"html/login/login.html",
+					"html/login/binding.html"
+				],
+				"priority": 0
+			},
+			"html/login/binding.html": {
+				"resources": [],
+				"refer": [
+					"html/login/jump.html"
+				],
+				"priority": 0
+			},
+			"html/home/Found.html": {
+				"resources": [],
+				"refer": [
+					"html/home/community.html"
+				],
+				"priority": 0
+			},
+			"html/home/community.html": {
+				"resources": [],
+				"refer": [
+					"html/home/home.html",
+					"html/home/my.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -285,7 +318,6 @@
 				"html/content/js/webiaoqin_2.js",
 				"html/loading.html",
 				"html/home/images/arclist/69.gif",
-				"html/login/binding.html",
 				"html/home/css/instructions.css",
 				"html/my/images/arclist/21.gif",
 				"html/home/images/arclist/63.gif",
@@ -720,7 +752,6 @@
 				"html/home/images/arclist/80.gif",
 				"html/my/images/arclist/13.gif",
 				"html/my/images/arclist/14.gif",
-				"html/home/community.html",
 				"img/shu_02.png",
 				"css/font_787547_girkphi811k/iconfont.ttf",
 				"html/home/images/arclist/60.gif",
@@ -739,7 +770,6 @@
 				"html/content/images/arclist/39.gif",
 				"html/home/images/arclist/49.gif",
 				"html/my/images/arclist/77.gif",
-				"html/home/Found.html",
 				"img/wy_06.jpg",
 				"html/content/images/default_2.gif",
 				"js/jquery.js",

@@ -13,15 +13,15 @@
 	</head>
 	<style>
 		.logind {
-		  width: 80%;
+		  width:80%;
 		  margin:4rem auto 0;
 		}
 		.logind_childs {
 		  width: 100%;
 		  height:1.7rem;
-		  display: flex;
-		  align-items: center;
-		  background-color: #ffffff;
+		  display:flex;
+		  align-items:center;
+		  background-color:#ffffff;
 		  box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(255, 255, 255, 0.22);
 		  border-radius:0.213rem;
 		  overflow:hidden;
@@ -192,55 +192,18 @@
 			}
 		}
 		$("#qq").click(function(){
-			window.location.href="a1.html";
-			/*ajaxGet( "qq/login",'post',{state:111},function(data){
-				window.location.href=data.data;
-				console.log(data);
-			},function(err){
-				console.log(err);
-			})
-			setInterval(function(){
-				ajaxGet("qq/get/return/from/redis",'post',{state:222},function(data){
-					console.log(data);
-				},function(err){
-					console.log(err);
-				})
-			},2000)*/
-			
-			
-			
-			
-			
-			
-			/*$.ajax({
-				type:"post",
-				url:"qq/login",
-		 		xhrFields:{
-		           withCredentials:true
-		       	},
-		        dataType : "json",
-				success: function(data) {
-					console.log(data);
-				},
-		        error: function(error) {
-		            console.log(error);         
-		        }
-			});*/
-			
-			
-			
-			/*ajaxGet("https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101504887&redirect_uri=http://localhost:8020/邻家书房/html/login",'post',{},function(data){
-				console.log(data);
-			},function(err){
-				console.log(err);
-			})*/
+			window.location.href="jump.html";
 			
 		})
 		$("#weixin").click(function(){
-			alert("URL地址=="+window.location.href);
-			//移动端---file:///android_asster/apps/H52A3BBDF/www/html/login/login.html
-			console.log("URL地址=="+window.location.href);
-			//PC端---URL地址=http://127.0.0.1:8020/linjia/html/login/login.html?__hbt=153976638273
+//			weixin/Third/login
+			var _token = JSON.parse(localStorage.getItem('TT_TOKEN'));
+			ajaxGet("weixin/Third/login",'post',{},function(data){
+				console.log(data);
+				console.log(data.data);
+			},function(err){
+				console.log(err);
+			})
 		})
 		$("#weibo").click(function(){
 			ajaxGet( "",'post',{},function(data){

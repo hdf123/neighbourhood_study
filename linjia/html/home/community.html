@@ -283,6 +283,9 @@
 			userId:userid.phone		//用户手机号
 		}
 		ajaxGet( "dynamic/circleDynamic",'post',dataObj,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			$("#loading").hide();
 			funks(data,$(".cir1"),$("#sends"));
 		},function(err){
@@ -436,6 +439,9 @@
 	        		dynamicId:dynamicId,
 	        	}
 				ajaxGet(url,'post',transfer,function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					console.log(data);
 					if(data.success==true){
 						if(color=="rgb(0, 0, 255)"){
@@ -475,6 +481,9 @@
 		  			body:sends.children("input").val()
 		  		}
 		  		ajaxGet("dynamic/addComment",'post',transfer,function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 		  			sends.hide();
 		  			$(".footer_menu").show();
 		  			console.log(data);
@@ -504,6 +513,9 @@
 					userId:userid.userId
 				}
 				ajaxGet( "dynamic/selectComment",'get',transfer,function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					data.reverse();//颠倒排序顺序
 					var sk='';
 					for(i in data){
@@ -617,6 +629,9 @@
 		    })
 		}
 		loadmore('.tab:eq(0)','http://39.104.127.252:8081/dynamic/circleDynamic','get',dataObj,function (data){//上拉加载数据
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			funmk(data,$(".cir1"),$("#sends"));
 		},function (err){
 			console.log(err);
@@ -629,11 +644,17 @@
 			userId:userid.phone				//用户手机号
 		}
 		ajaxGet( "dynamic/friendDynamic",'post',dataObjs,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			funks(data,$(".cir2"),$("#sendss"));
 		},function (err){
 			console.log(err);
 		});
 		loadmore('.tab:eq(1)','http://39.104.127.252:8081/dynamic/friendDynamic','get',dataObjs,function (data){//上拉加载数据
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			funmk(data,$(".cir2"),$("#sendss"));
 		},function (err){
 			console.log(err);
@@ -644,6 +665,9 @@
 			userId:userid.userId
 		}
 		ajaxGet( "dynamic/unread",'post',usk,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			if(data.data>0){
 				console.log("未读消息"+data.data);
 				$("#message>img").attr("src","../../img/com_01.png");

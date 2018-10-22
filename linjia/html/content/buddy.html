@@ -144,6 +144,9 @@
 			}
 			ajaxGet( "wangyi/selectUserOne",'get',transfer,function(data){
 				console.log(data);
+				if(data.status==985){
+					window.location.href="../login/login.html";
+				}
 				$(".buddy").html('<div>'
 									+'<img src='+data.image+' />'
 								+'</div>'
@@ -170,7 +173,11 @@
 				type:1
 			}
 			ajaxGet( "wangyi/addFriend",'get',parameter,function(data){
-				alert(data.message);
+				if(data.status==985){
+					window.location.href="../login/login.html";
+				}else if(data.status==200){
+					alert(data.message);
+				}
 				console.log(data);
 			},function(err){
 				console.log(err);

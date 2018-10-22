@@ -65,6 +65,9 @@
 			userId:userid.userId
 		}
 		ajaxGet("my/study",'get',transfer,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var data=data.data;
 			var cc=data.出借书单.concat(data.出售书单);
 			var kmhs="";

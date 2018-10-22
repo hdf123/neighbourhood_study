@@ -147,6 +147,9 @@
 		    }
 	    	ajaxGet("my/tips/add",'post',transfer,function(data){
 	    		console.log(data);
+				if(data.status==985){
+					window.location.href="../login/login.html";
+				}
 	    		window.location.href="tips.html";
 	    	},function(err){
 	    		console.log(err);

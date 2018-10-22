@@ -243,6 +243,9 @@
 		    		body:inps	//发送内容
 		    	}
 				ajaxGet( "wangyi/sendMsg",'post',transfer,function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					$("#form_article").html("");
 					showList();
 				},function(err){
@@ -259,6 +262,9 @@
 					to:friends.phone//手机号查询
 				}
 				ajaxGet( "wangyi/querySessionMsg",'post',knm,function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					for(i in data){
 						var kj=Date.parse(new Date(data[i].sendtime));
 						if(kj>times){

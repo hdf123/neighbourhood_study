@@ -323,6 +323,9 @@
 	             		base64:base,
 	             	}
 					ajaxGet("base64/upload",'post',dataObj,function(data){
+						if(data.status==985){
+							window.location.href="../login/login.html";
+						}
 						$('.sd>div').eq(index).find("img").attr("src",data.data);
 					},function(err){
 						console.log(err);
@@ -372,6 +375,9 @@
 			}else{
 				ajaxGet( "book/add/book",'post',transfer,function(data){
 					console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					window.location.href="study.html";
 				},function(err){
 					console.log(err);

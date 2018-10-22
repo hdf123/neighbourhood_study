@@ -314,6 +314,9 @@ $(function(){
 	$("#clipBtn").click(function(){
 		$("#logox").empty();
 		ajaxGet( "base64/upload",'post',{base64:imgsource,token:userid.token},function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			$('#logox').append('<img src="' + data.data + '" align="absmiddle" style=" width: 3rem;height: 3rem;">');
 		},function(err){
 			console.log(err);
@@ -331,6 +334,9 @@ $(function(){
             reader.onload = function(e){
              	var base=this.result;
 				ajaxGet("base64/upload",'post',{base64:base,token:userid.token},function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					$('.sd>div').eq(index).find("img").attr("src",data.data);
 				},function(err){
 					console.log(err);
@@ -394,6 +400,9 @@ $(function(){
 				}
 				console.log(transfer);
 				ajaxGet( "user/modify/personal",'post',transfer,function(data){//个人资料提交
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					var parameter={
 						phone:logs.phone,
 						password:logs.password

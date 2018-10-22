@@ -263,6 +263,9 @@
 		var lends = JSON.parse(localStorage.getItem('lends'));//书本id
 		$(".jsd").hide();
 		ajaxGet("book/details?bookId="+lends,'get',{token:userid.token},function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var data=data.data;
 			console.log(data);
 			$(".buddy").html('<div>'

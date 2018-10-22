@@ -134,6 +134,9 @@
 	$(function(){
 		var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
 	  	ajaxGet("dynamic/selectMyCollection",'get',{token:userid.token,userId:userid.userId},function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 	  		var ty='';
 	  		for(i in data){
 	  			if(data[i].dynamic.circleId==1){
@@ -219,6 +222,9 @@
 	  			}
 	  			ajaxGet("dynamic/addCollection",'post',dataObj,function(data){
 	  				console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 	  				window.location.reload();//重新加载当前页面
 	  			},function(err){
 					console.log(err);

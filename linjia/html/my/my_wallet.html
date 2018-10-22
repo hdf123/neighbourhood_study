@@ -152,6 +152,9 @@
 		}
 		ajaxGet("wallet/selectById",'post',transfer,function(data){
 			console.log(data);
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			$(".moneys").eq(0).append(data.money);
 			$(".moneys").eq(1).append(data.fakeMoney);
 			var pays={

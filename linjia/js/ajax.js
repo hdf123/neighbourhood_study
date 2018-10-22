@@ -8,7 +8,7 @@ function ajaxGet(url,type,data,suFn,erFn){
 		type: type,
         dataType : "json",
         data:data,
-		success: function(data) {
+		success: function(data){
 			suFn(data);
 		},
         error: function(error) {

@@ -67,11 +67,13 @@
 				accid:userid.userId,
 				faccid:friends.usid
 			}
-//			ajaxGet( "http://192.168.1.181:8888/wangyi/deleteFriend",'post',transfer,function(data){
 			ajaxGet( "http://39.104.127.252:8080/linjia-manager/wangyi/deleteFriend",'post',transfer,function(data){
-				console.log(data);
-				console.log("删除成功");
-				
+				if(data.status==985){
+					window.location.href="../login/login.html";
+				}else if(data.status==200){
+					alert("删除成功");
+					window.location.href="../my/my_friends.html";
+				}
 			},function(err){
 				console.log(err);
 			})

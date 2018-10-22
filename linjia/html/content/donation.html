@@ -112,6 +112,9 @@
 		var userid = JSON.parse(localStorage.getItem('userId'));//用户id 
 		ajaxGet("donation/manager/school/list", 'get',{token:userid.token}, function(data){
 			console.log(data);
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var ksd="",data=data.data;
 			$.each(data, function(key,val) {
 				ksd+='<div data-school_id='+val.school_Id+'>'

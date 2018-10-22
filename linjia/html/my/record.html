@@ -136,6 +136,9 @@
 	}
 	ajaxGet( "wallet/selectReview",'get',transfer,function(data){//买家
 		console.log(data);
+		if(data.status==985){
+			window.location.href="../login/login.html";
+		}
 		var hj='',totals=0;
 		for(i in data){
 			var ksd="";

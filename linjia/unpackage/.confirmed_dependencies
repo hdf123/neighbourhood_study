@@ -9,13 +9,15 @@
 		"refer": [
 			"html/content/study.html",
 			"html/home/my.html",
-			"html/home/Introduction.html"
+			"html/home/Introduction.html",
+			"html/home/community.html"
 		]
 	},
 	"html/login/login.html": {
 		"refer": [
 			"html/home/home.html",
-			"html/login/a1.html"
+			"html/login/a1.html",
+			"html/login/jump.html"
 		]
 	},
 	"html/content/study.html": {
@@ -61,7 +63,8 @@
 			"html/home/home.html",
 			"html/my/my_wallet.html",
 			"html/my/order.html",
-			"html/my/cancellation.html"
+			"html/my/cancellation.html",
+			"html/home/Found.html"
 		]
 	},
 	"html/my/borrowing.html": {
@@ -87,6 +90,28 @@
 	"html/my/cancellation.html": {
 		"refer": [
 			"html/login/login.html"
+		]
+	},
+	"html/login/jump.html": {
+		"refer": [
+			"html/login/login.html",
+			"html/login/binding.html"
+		]
+	},
+	"html/login/binding.html": {
+		"refer": [
+			"html/login/jump.html"
+		]
+	},
+	"html/home/Found.html": {
+		"refer": [
+			"html/home/community.html"
+		]
+	},
+	"html/home/community.html": {
+		"refer": [
+			"html/home/home.html",
+			"html/home/my.html"
 		]
 	}
 }

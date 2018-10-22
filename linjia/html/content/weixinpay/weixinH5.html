@@ -82,7 +82,7 @@
 							//如果查询结果是支付失败，修改订单状态为交易关闭，然后跳转失败页
 							$.ajax({
 								type:"post",
-								url:"http://linshuchina.com/weixin/h5/update/order/status",
+								url:"http://39.104.127.252:8081/weixin/h5/update/order/status",
 								dataType:"json",
 								data:{
 						       		token:arr[0],//token

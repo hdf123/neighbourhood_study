@@ -413,95 +413,103 @@
 		})
 //获取个人信息
 		ajaxGet("user/token/"+_token+"?token="+_token,'get',{}, function(data) {
-			$("#loading").hide();
-			var data = data.data;
-			if(data.image2==null){
-				window.location.href="../my/personal.html";
-			}
-			$("#portraits>img").attr("src",data.image2);
-			$("#my_study").click(function(){//书房.
-				localStorage.setItem('study', JSON.stringify(data.user.id));
-			  	window.location.href="../content/study.html";
-			})
-			var datas={//信息传递
-				token:_token,
-				userId:data.user.id,//用户id
-				phone:data.user.phone,//用户手机号
-				portrait:data.image2//用户头像
-			}
-			localStorage.setItem('userId', JSON.stringify(datas));//个人信息
-			var parameter={
-				token:_token,
-				userId:data.user.id,//用户id
-			}
-			ajaxGet("comment/findAllList", 'post',parameter, function(data){//首页展示
-				console.log(data);
-				localStorage.setItem('recommends',JSON.stringify(data.recommend));//推荐
-				localStorage.setItem('friend',JSON.stringify(data.friend));//好友
+			console.log(data);
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}else if(data.status==200){
+				$("#loading").hide();
+				var data = data.data;
+				if(data.image2==null){
+					window.location.href="../my/personal.html";
+				}
+				$("#portraits>img").attr("src",data.image2);
+				$("#my_study").click(function(){//书房.
+					localStorage.setItem('study', JSON.stringify(data.user.id));
+				  	window.location.href="../content/study.html";
+				})
+				var datas={//信息传递
+					token:_token,
+					userId:data.user.id,//用户id
+					phone:data.user.phone,//用户手机号
+					portrait:data.image2//用户头像
+				}
+				localStorage.setItem('userId', JSON.stringify(datas));//个人信息
+				var parameter={
+					token:_token,
+					userId:data.user.id,//用户id
+				}
+				ajaxGet("comment/findAllList", 'post',parameter, function(data){//首页展示
+					console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
+					localStorage.setItem('recommends',JSON.stringify(data.recommend));//推荐
+					localStorage.setItem('friend',JSON.stringify(data.friend));//好友
 //推荐recommend
-				var recommend=data.recommend,cumulatives='';
-				showsd(recommend,cumulatives,$("#swiper2 .swiper-wrapper"));//推荐recommend
-				function showsd(datas,cumulatives,swipers){
-					for(i in datas){
-						if(datas[i].status==3){
-							datas.splice(i,1);
+					var recommend=data.recommend,cumulatives='';
+					showsd(recommend,cumulatives,$("#swiper2 .swiper-wrapper"));//推荐recommend
+					function showsd(datas,cumulatives,swipers){
+						for(i in datas){
+							if(datas[i].status==3){
+								datas.splice(i,1);
+							}
+							cumulatives+='<div class="swiper-slide" data-url='+datas[i].url+' data-status='+datas[i].status+'>'
+								        	+'<img src='+datas[i].pic+' alt=""/>'
+								        +'</div>';
 						}
-						cumulatives+='<div class="swiper-slide" data-url='+datas[i].url+' data-status='+datas[i].status+'>'
-							        	+'<img src='+datas[i].pic+' alt=""/>'
-							        +'</div>';
+						swipers.html(cumulatives);
 					}
-					swipers.html(cumulatives);
-				}
-				var mySwiper1 = new Swiper ('#swiper1',{//推荐recommend
-					autoplay: true,//可选选项，自动滑动
-				    direction: 'horizontal',
-				})
-				var mySwiper2 = new Swiper ('#swiper2',{//推荐recommend
-				    direction: 'horizontal',
-				    slidesPerView:6,
-				    spaceBetween:15,
-				    zoom:{
-				    	maxRatio:2,
-				    	minRatio:1
-				    }
-				})
+					var mySwiper1 = new Swiper ('#swiper1',{//推荐recommend
+						autoplay: true,//可选选项，自动滑动
+					    direction: 'horizontal',
+					})
+					var mySwiper2 = new Swiper ('#swiper2',{//推荐recommend
+					    direction: 'horizontal',
+					    slidesPerView:6,
+					    spaceBetween:15,
+					    zoom:{
+					    	maxRatio:2,
+					    	minRatio:1
+					    }
+					})
 //好友书房
-				var friends="";
-				var friend=data.friend.splice(0,2);//展示前两个好友
-				for(i in friend){
-					var imges=friend[i].images.split(",");//仅展示第一张图片
-					friends+='<div class="friend" data-study='+friend[i].id+'>'
-								+'<img src='+imges[0]+' alt="" />'
-							+'</div>';
-				}
-				$(".content_shows").html(friends);
-				$(".content_shows").on("click",".friend",function(){
-					var userid = JSON.parse(localStorage.getItem('userId'));
-					var sdd=$(this).data("study");
-					if(sdd==undefined||sdd==""){
-						sdd=userid.userId;
+					var friends="";
+					var friend=data.friend.splice(0,2);//展示前两个好友
+					for(i in friend){
+						var imges=friend[i].images.split(",");//仅展示第一张图片
+						friends+='<div class="friend" data-study='+friend[i].id+'>'
+									+'<img src='+imges[0]+' alt="" />'
+								+'</div>';
 					}
-					localStorage.setItem('study',JSON.stringify(sdd));
-					console.log(sdd);
-					window.location.href="../content/study.html";
-				})
-				$("#foun").click(function(){//好友书房列表
-				  	window.location.href="Found.html";
-				})
+					$(".content_shows").html(friends);
+					$(".content_shows").on("click",".friend",function(){
+						var userid = JSON.parse(localStorage.getItem('userId'));
+						var sdd=$(this).data("study");
+						if(sdd==undefined||sdd==""){
+							sdd=userid.userId;
+						}
+						localStorage.setItem('study',JSON.stringify(sdd));
+						console.log(sdd);
+						window.location.href="../content/study.html";
+					})
+					$("#foun").click(function(){//好友书房列表
+					  	window.location.href="Found.html";
+					})
 //推荐、爱好
-				$("#swiper2").on("click",".swiper-slide",function(){
-					var where=$(this);
-					localStorage.setItem('study',JSON.stringify(where.data("url")));
-					window.location.href="../content/study.html";//书房
+					$("#swiper2").on("click",".swiper-slide",function(){
+						var where=$(this);
+						localStorage.setItem('study',JSON.stringify(where.data("url")));
+						window.location.href="../content/study.html";//书房
+					})
+					$("#swiper3").on("click",".swiper-slide",function(){
+						var where=$(this);
+						localStorage.setItem('study',JSON.stringify(where.data("ownerid")));
+						window.location.href="../content/study.html";//书房
+					})
+				},function(err) {
+					console.log(err);
 				})
-				$("#swiper3").on("click",".swiper-slide",function(){
-					var where=$(this);
-					localStorage.setItem('study',JSON.stringify(where.data("ownerid")));
-					window.location.href="../content/study.html";//书房
-				})
-			},function(err) {
-				console.log(err);
-			})
+			}
 //菜单点击效果
 	        $(document).on("touchstart", function (e){
 	            if (!$(e.target).hasClass("disable")) $(e.target).data("isMoved", 0);
@@ -555,6 +563,9 @@
 				classification:typesd
 			}
 			ajaxGet("book/getby/classification", 'get',hobbyx, function(data){
+				if(data.status==985){
+					window.location.href="../login/login.html";
+				}
 				var hobby=data.data,cumulatives='';
 				localStorage.setItem('hobbys',JSON.stringify(hobby));//推荐
 				showsd(hobby,cumulatives,$("#swiper3 .swiper-wrapper"));//推荐recommend

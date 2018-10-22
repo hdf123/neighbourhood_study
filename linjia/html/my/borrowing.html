@@ -329,6 +329,9 @@
 		}
 //借出
 		ajaxGet("my/LoanOut",'get',uks,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var nearly=data.data,lot='',kst="去催还",ksk="确认已还书";
 			console.log(nearly);
 			func(nearly,lot,$(".bor_tab .borrows:eq(0)"),kst,ksk);
@@ -351,6 +354,9 @@
 						body:$(".cuihuan").val()
 					}
 					ajaxGet( "my/add/OverdueNews",'post',cui,function(data){
+						if(data.status==985){
+							window.location.href="../login/login.html";
+						}
 						alert("催还成功！");
 						$(".popupsd").hide();
 						$(".popupsd>div:nth-child(1)").hide();
@@ -383,6 +389,9 @@
 				}
 				ajaxGet("my/yes/return",'post',quer,function(data){
 					console.log(data);
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					$(".popupsd").hide();
 					$(".confirms").hide();
 					window.location.reload();//重新加载当前页面
@@ -400,6 +409,9 @@
 		})
 //借入
 		ajaxGet( "my/borrow",'get',uks,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var nearly=data.data,lot='',kst="去还书";
 			func(nearly,lot,$(".bor_tab .borrows:eq(1)"),kst);
 			
@@ -413,6 +425,9 @@
 					bookid:ids
 				}
 				ajaxGet("my/toReturn/book",'get',kksd,function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					var data=data.data;
 					console.log(data);
 					alert("还书地址："+data.address+"\n联系人："+data.nickname+"\n联系电话："+data.phone);
@@ -474,6 +489,9 @@
 			userID:userid.userId
 		}
 		ajaxGet("my/unread/OverdueNews/num",'post',ks,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			if(data.data>0){
 				$("#message>img").attr("src","../../img/com_01.png");
 			}

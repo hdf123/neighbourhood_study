@@ -118,6 +118,9 @@
 			bookId:ord
 		}
 		ajaxGet("book/details",'get',transfer,function(data){
+			if(data.status==985){
+				window.location.href="../login/login.html";
+			}
 			var data=data.data;
 			var imges=data.book.imges.split(",");
 			$(".shows>div").html('<img src='+imges[0]+' alt="" />');
@@ -142,6 +145,9 @@
 						}
 						ajaxGet("donation/manager/add/donationRecord",'post',parameter,function(data){
 							console.log(data);
+							if(data.status==985){
+								window.location.href="../login/login.html";
+							}
 							if(data.status==200){
 								alert("捐赠成功！");
 								window.location.href="dons.html";

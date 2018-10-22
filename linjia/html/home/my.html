@@ -250,6 +250,9 @@
 			$(function() {
 				var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
 				ajaxGet("user/token/"+userid.token+"?token="+userid.token, 'get',{}, function(data) {
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}
 					var data = data.data;
 					var sdk='<div>'
 								+'<img src="'+data.user.image+'" alt="" />'
