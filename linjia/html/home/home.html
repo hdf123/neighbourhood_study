@@ -413,7 +413,7 @@
 		})
 //获取个人信息
 		ajaxGet("user/token/"+_token+"?token="+_token,'get',{}, function(data) {
-			console.log(data);
+//			console.log(data);
 			if(data.status==985){
 				window.location.href="../login/login.html";
 			}else if(data.status==200){
@@ -439,7 +439,6 @@
 					userId:data.user.id,//用户id
 				}
 				ajaxGet("comment/findAllList", 'post',parameter, function(data){//首页展示
-					console.log(data);
 					if(data.status==985){
 						window.location.href="../login/login.html";
 					}

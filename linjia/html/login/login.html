@@ -4,6 +4,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>登录</title>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="css/login.css"/>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
@@ -129,7 +132,7 @@
 					<!--谷歌浏览器中获取焦点后清空placeholder信息-->
 					 <!--onfocus="this.placeholder=''" onblur="this.placeholder='请输入账号'"-->
 					 <!--测试账号：徐徐：18749986696 	何志高：13783493211		海鸽：15136175202	小黄：15738567178	19903861159  海波：13592589109-->
-					<input type="text" placeholder="请输入账号" id="tel" value="18749986696"/>
+					<input type="number" placeholder="请输入账号" id="tel" value="18749986696"/>
 				</div>
 				<div class="logind_childs">
 					<div>
@@ -153,10 +156,15 @@
 			<div class="login_icon">
 				<div class="iconfont icon-qq" id="qq"></div>
 				<div class="iconfont icon-weixin" id="weixin"></div>
-				<div class="iconfont icon-weibo" id="weibo"></div>
+				<div class="iconfont icon-weibo" id="sinaweibo"></div>
 			</div>
 		</div>
 	</body>
+	
+<script src="js/mui.min.js"></script>
+<script src="js/mui.zoom.js"></script>
+<script src="js/mui.previewimage.js"></script>
+<script src="js/tools.js" ></script>
 <script>
 	$(function(){
 		var one=0;
@@ -191,27 +199,112 @@
 				})
 			}
 		}
-		$("#qq").click(function(){
-			window.location.href="jump.html";
-			
+//第三方登录
+		// 获取用户头像标签
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		mui.plusReady(function() {  
+			plus.oauth.getServices(function(services) {
+				auths = services;
+			}, function(e) {
+				alert("获取登录服务列表失败：" + e.message + " - " + e.code);
+			});
 		})
-		$("#weixin").click(function(){
-//			weixin/Third/login
-			var _token = JSON.parse(localStorage.getItem('TT_TOKEN'));
-			ajaxGet("weixin/Third/login",'post',{},function(data){
-				console.log(data);
-				console.log(data.data);
-			},function(err){
-				console.log(err);
-			})
+	
+		document.getElementById('weixin').addEventListener('tap',function() {
+			console.log("微信");
+			authLogin('weixin');
 		})
-		$("#weibo").click(function(){
-			ajaxGet( "",'post',{},function(data){
-				console.log(data);
-			},function(err){
-				console.log(err);
-			})
+		document.getElementById('qq').addEventListener('tap',function() {
+			console.log("QQ");
+			authLogin('qq');
 		})
+		document.getElementById('sinaweibo').addEventListener('tap',function() {
+			console.log("微博");
+			authLogin('sinaweibo');
+		})
+		// 登录操作
+		function authLogin(type) {
+			var s;
+			for (var i = 0; i < auths.length; i++){
+				if (auths[i].id == type){
+					s = auths[i];
+					break;
+				}
+			}
+			if (!s.authResult) {
+				s.login(function(e) {
+					mui.toast("登录认证成功！");
+					authUserInfo(type);
+				}, function(e) {
+					mui.toast("登录认证失败！");
+				});
+			} else {
+				mui.toast("已经登录认证！");
+			}
+		}
+		//注销
+		function authLogout() {
+			for (var i in auths) {
+				var s = auths[i];
+				if (s.authResult) {
+					s.logout(function(e) {
+						console.log("注销登录认证成功！");
+					}, function(e) {
+						console.log("注销登录认证失败！");
+					});
+				}
+			}
+		}
+		// 微信登录认证信息
+		function authUserInfo(type) {
+			var s;
+			for (var i = 0; i < auths.length; i++){
+				if (auths[i].id == type) {
+					s=auths[i];
+					break;
+				}
+			}
+			if (!s.authResult) {
+				mui.toast("未授权登录！");
+			} else {
+//		昵称/头像/性别/openid
+				s.getUserInfo(function(e) {
+					var kks=JSON.parse(JSON.stringify(s));
+					console.log(kks);
+					//获取opendid
+					var opendids=kks.authResult.openid;
+					
+					console.log(kks.userInfo.nickname);//昵称
+					console.log(kks.userInfo.gender);//性别
+					console.log(kks.authResult.openid);//openid
+					console.log(kks.userInfo.figureurl_qq_2);//头像
+					
+					var datask={
+						openID:opendids,
+						type:1
+					}
+					alert(datask.openID+"---"+datask.type);
+					ajaxGet("third/party/login",'post',datask,function(data){
+						console.log(JSON.stringify(data));
+						if(data.status==200){//登录成功返回token
+							console.log(data.data);//保存token,跳转首页
+						}else if(data.status==300){//跳转绑定页面
+							console.log("去绑定");
+							window.location.href="binding.html";
+						}else{
+							console.log("错误");
+						}
+					},function(err){
+						console.log(err);
+					})
+					authLogout();
+				}, function(e){
+					alert("获取用户信息失败：" + e.message + " - " + e.code);
+				});
+			}
+		}
 		$("#login_for").click(function(){//忘记密码
 			window.location.href="Forgot.html";
 		})

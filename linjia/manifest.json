@@ -161,7 +161,8 @@
 				"refer": [
 					"html/home/home.html",
 					"html/login/a1.html",
-					"html/login/jump.html"
+					"html/login/jump.html",
+					"html/login/binding.html"
 				],
 				"priority": 0
 			},
@@ -170,7 +171,8 @@
 				"refer": [
 					"html/content/details.html",
 					"html/home/home.html",
-					"html/home/my.html"
+					"html/home/my.html",
+					"html/content/addbooks.html"
 				],
 				"priority": 0
 			},
@@ -288,6 +290,13 @@
 				"refer": [
 					"html/home/home.html",
 					"html/home/my.html"
+				],
+				"priority": 0
+			},
+			"html/content/addbooks.html": {
+				"resources": [],
+				"refer": [
+					"html/content/study.html"
 				],
 				"priority": 0
 			}
@@ -678,7 +687,6 @@
 				"html/home/images/arclist/10.gif",
 				"html/content/images/arclist/78.gif",
 				"html/home/css/search.css",
-				"html/content/addbooks.html",
 				"html/content/images/arclist/0.gif",
 				"html/my/binding.html",
 				"css/font_787547_girkphi811k/iconfont.woff",

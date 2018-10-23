@@ -17,14 +17,16 @@
 		"refer": [
 			"html/home/home.html",
 			"html/login/a1.html",
-			"html/login/jump.html"
+			"html/login/jump.html",
+			"html/login/binding.html"
 		]
 	},
 	"html/content/study.html": {
 		"refer": [
 			"html/content/details.html",
 			"html/home/home.html",
-			"html/home/my.html"
+			"html/home/my.html",
+			"html/content/addbooks.html"
 		]
 	},
 	"html/content/details.html": {
@@ -112,6 +114,11 @@
 		"refer": [
 			"html/home/home.html",
 			"html/home/my.html"
+		]
+	},
+	"html/content/addbooks.html": {
+		"refer": [
+			"html/content/study.html"
 		]
 	}
 }

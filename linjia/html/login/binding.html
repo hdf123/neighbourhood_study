@@ -6,6 +6,7 @@
 		<title>绑定账号</title>
 		<link rel="stylesheet" type="text/css" href="css/login.css"/>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/ajax.js"></script>
 		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
 	</head>
@@ -106,7 +107,7 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-		$("#loging").click(function(){
+		/*$("#loging").click(function(){
 			var pho = $('#tel').val(),pass = $('#pass').val();
 			if(pho==""||pass==""){
 				alert("填写不可为空");
@@ -118,6 +119,27 @@
 					window.location.href="login.html";
 				}
 			}
+		})*/
+		$("#loging").click(function(){
+			var datask={
+				openID:"62ADECBC5F09705D884F44ABFBC2CEA9",//openid
+				niceName:"111",//昵称
+				portrait:"111",//头像
+				gender:"女",//性别
+				phone:"15137102387",
+				password:"ad123456",
+				type:1
+			}
+			ajaxGet("third/party/binding",'post',datask,function(data){
+				console.log(JSON.stringify(data));//保存token，跳转首页
+			},function(err){
+				console.log(err);
+			})
 		})
+
+		
+		
+//发送请求绑定账号third/party/binding
+
 	</script>
 </html>

@@ -135,7 +135,8 @@
 				<div id="address">
 					<div>
 						<input type="text" placeholder="收货人" class="names"/>
-						<input type="text" placeholder="手机号码" class="phones"/>
+						<!--<input type="text" placeholder="手机号码" class="phones"/>-->
+						<input type="number" placeholder="手机号码" class="phones"/>
 					</div>
 			        <div class="m-cell">
 			            <div class="cell-item">
@@ -211,22 +212,25 @@
 				if($(".names").val()==""||$(".phones").val()==""||$("#J_Address").val()==""||$(".detaileds").val()==""){
 					alert("请填写完整的订单信息");
 				}else{
-					ajaxGet("book/create/order",'post',transfer,function(data){
-						if(data.status==985){
-							window.location.href="../login/login.html";
-						}
-						var data=data.data;
-						console.log(data);
-						var orderId={
-							orderId:data.orderId,
-							borrow:transfer
-						}
-						localStorage.setItem('orderId', JSON.stringify(orderId));
-						window.location.href="settlement.html";
-					},function(err) {
-						console.log(err);
-					})
-					console.log(transfer);
+					var df=/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;//手机号正则
+					df.test($(".phones").val())?funcel():alert("手机号填写错误！");
+					function funcel(){
+						ajaxGet("book/create/order",'post',transfer,function(data){
+							if(data.status==985){
+								window.location.href="../login/login.html";
+							}
+							var data=data.data;
+							console.log(data);
+							var orderId={
+								orderId:data.orderId,
+								borrow:transfer
+							}
+							localStorage.setItem('orderId', JSON.stringify(orderId));
+							window.location.href="settlement.html";
+						},function(err) {
+							console.log(err);
+						})
+					}
 				}
 			})
 		},function(err) {
