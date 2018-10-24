@@ -16,18 +16,17 @@
 	</head>
 	<style>
 		.logind {
-		  width:80%;
-		  margin:4rem auto 0;
+		  	width:80%;
+		  	margin:4rem auto 0;
 		}
 		.logind_childs {
-		  width: 100%;
-		  height:1.7rem;
-		  display:flex;
-		  align-items:center;
-		  background-color:#ffffff;
-		  box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(255, 255, 255, 0.22);
-		  border-radius:0.213rem;
-		  overflow:hidden;
+		  	width: 100%;
+		  	height:1.7rem;
+		  	display:flex;
+		  	background-color:#ffffff;
+		  	box-shadow: 0rem 0rem 0.269rem 0.073rem rgba(255, 255, 255, 0.22);
+		  	border-radius:0.213rem;
+		  	overflow:hidden;
 		}
 		.logind_childs>div{
 		  	width:15%;
@@ -39,7 +38,7 @@
 		.logind_childs > div > img {
 		  	width: 80%;
 		}
-		.logind_childs > input{
+		.logind_childs>input{
 			box-sizing: border-box;
 			padding:0 0.3rem;
 		  	width:85%;
@@ -50,68 +49,68 @@
 		  	outline: none;
 		}
 		.logind_childs:nth-child(2){
-		  margin-top:0.5rem;
+		  	margin-top:0.5rem;
 		}
 		.logind_childs:nth-child(2) > div > img {
-		  width: 60%;
+		  	width: 60%;
 		}
 		.loging {
-		  width:100%;
-		  background-color:#fee74a;
-		  border-radius:1rem;
-		  margin-top:1rem;
-		  text-align: center;
+		  	width:100%;
+		  	background-color:#fee74a;
+		  	border-radius:1rem;
+		  	margin-top:1rem;
+		  	text-align: center;
 		}
 		.loging > div {
-		  padding: 0.5rem 0;
-		  font: bold 0.64rem AdobeHeitiStd-Regular;
-		  color: #002ded;
+		  	padding: 0.5rem 0;
+		  	font: bold 0.64rem AdobeHeitiStd-Regular;
+		  	color: #002ded;
 		}
 		.login_p {
-		  width: 100%;
-		  font: normal 0.64rem AdobeHeitiStd-Regular;
-		  color: #ffffff;
-		  margin-top: 1rem;
-		  display: flex;
-		  justify-content: space-between;
+		  	width: 100%;
+		  	font: normal 0.64rem AdobeHeitiStd-Regular;
+		  	color: #ffffff;
+		  	margin-top: 1rem;
+		  	display: flex;
+		  	justify-content: space-between;
 		}
 		.login_third {
-		  margin-top:1rem;
-		  display:flex;
-		  justify-content: space-between;
-		  align-items: center;
-		  font: normal 1.2rem AdobeHeitiStd-Regular;
-		  color: #ffffff;
+		  	margin-top:1rem;
+		  	display:flex;
+		  	justify-content: space-between;
+		  	align-items: center;
+		  	font: normal 1.2rem AdobeHeitiStd-Regular;
+		  	color: #ffffff;
 		}
 		.login_third > span {
-		  display: inline-block;
+		  	display: inline-block;
 		}
 		.login_third > span:nth-child(2){
-		  width: 32%;
-		  text-align: center;
-		  font-size: 0.64rem;
+		  	width: 32%;
+		  	text-align: center;
+		  	font-size: 0.64rem;
 		}
 		.login_third > span:nth-child(1), .login_third > span:nth-child(3) {
-		  width: 34%;
-		  height: 0rem;
-		  border:1px solid #fff;
-		  display: inline-block;
-		  opacity: 0.5;
-		  vertical-align: middle;
+		  	width: 34%;
+		  	height: 0rem;
+		  	border:1px solid #fff;
+		  	display: inline-block;
+		  	opacity: 0.5;
+		  	vertical-align: middle;
 		}
 		.login_icon {
-		  width: 40%;
-		  margin:0.3rem auto 0;
-		  display: flex;
-		  justify-content: space-around;
-		  align-items: center;
-		  text-align: center;
+		  	width: 50%;
+		  	margin:1rem auto 0;
+		  	display: flex;
+		  	justify-content: space-around;
+		  	align-items: center;
+		  	text-align: center;
 		}
 		.login_icon > div {
-		  width: 33.3333333333%;
-		  color: white;
-		  padding: 0.5rem 0;
-		  font-size:0.8rem;
+		  	width: 33.3333333333%;
+		  	color:white;
+		  	padding: 0.5rem 0;
+		  	font-size:1.5rem;
 		}
 	</style>
 	<body>
@@ -132,7 +131,7 @@
 					<!--谷歌浏览器中获取焦点后清空placeholder信息-->
 					 <!--onfocus="this.placeholder=''" onblur="this.placeholder='请输入账号'"-->
 					 <!--测试账号：徐徐：18749986696 	何志高：13783493211		海鸽：15136175202	小黄：15738567178	19903861159  海波：13592589109-->
-					<input type="number" placeholder="请输入账号" id="tel" value="18749986696"/>
+					<input type="number" placeholder="请输入账号" id="tel" value="15137102387"/>
 				</div>
 				<div class="logind_childs">
 					<div>
@@ -186,6 +185,8 @@
 					phone:pho,
 					password:pass
 				}
+				console.log(parameter.phone);
+				console.log(parameter.password);
 				ajaxGet( "user/login",'post',parameter,function(data){
 					if(data.status==200){
 					    localStorage.setItem('TT_TOKEN', JSON.stringify(data.data));
@@ -200,6 +201,7 @@
 			}
 		}
 //第三方登录
+		var tyindex=0;
 		// 获取用户头像标签
 		mui.init({
 			swipeBack:true //启用右滑关闭功能
@@ -211,21 +213,24 @@
 				alert("获取登录服务列表失败：" + e.message + " - " + e.code);
 			});
 		})
-	
-		document.getElementById('weixin').addEventListener('tap',function() {
-			console.log("微信");
-			authLogin('weixin');
-		})
 		document.getElementById('qq').addEventListener('tap',function() {
 			console.log("QQ");
+			tyindex=1;
 			authLogin('qq');
+		})
+		document.getElementById('weixin').addEventListener('tap',function() {
+			console.log("微信");
+			tyindex=2;
+			authLogin('weixin');
 		})
 		document.getElementById('sinaweibo').addEventListener('tap',function() {
 			console.log("微博");
+			tyindex=3;
 			authLogin('sinaweibo');
 		})
 		// 登录操作
 		function authLogin(type) {
+			alert(1);
 			var s;
 			for (var i = 0; i < auths.length; i++){
 				if (auths[i].id == type){
@@ -233,9 +238,11 @@
 					break;
 				}
 			}
+			alert(2);
 			if (!s.authResult) {
 				s.login(function(e) {
 					mui.toast("登录认证成功！");
+					alert(3);
 					authUserInfo(type);
 				}, function(e) {
 					mui.toast("登录认证失败！");
@@ -259,6 +266,7 @@
 		}
 		// 微信登录认证信息
 		function authUserInfo(type) {
+			alert(4);
 			var s;
 			for (var i = 0; i < auths.length; i++){
 				if (auths[i].id == type) {
@@ -271,33 +279,74 @@
 			} else {
 //		昵称/头像/性别/openid
 				s.getUserInfo(function(e) {
+					console.log(JSON.stringify(s));
 					var kks=JSON.parse(JSON.stringify(s));
-					console.log(kks);
 					//获取opendid
 					var opendids=kks.authResult.openid;
-					
-					console.log(kks.userInfo.nickname);//昵称
-					console.log(kks.userInfo.gender);//性别
-					console.log(kks.authResult.openid);//openid
-					console.log(kks.userInfo.figureurl_qq_2);//头像
-					
 					var datask={
 						openID:opendids,
-						type:1
+						type:tyindex
 					}
-					alert(datask.openID+"---"+datask.type);
+					console.log(tyindex);
 					ajaxGet("third/party/login",'post',datask,function(data){
 						console.log(JSON.stringify(data));
 						if(data.status==200){//登录成功返回token
+							localStorage.setItem('TT_TOKEN', JSON.stringify(data.data));
+							window.location.href="../home/home.html";
 							console.log(data.data);//保存token,跳转首页
 						}else if(data.status==300){//跳转绑定页面
 							console.log("去绑定");
-							window.location.href="binding.html";
+							if(tyindex==1){//QQ
+								var information={
+									nickname:kks.userInfo.nickname,//昵称
+									gender:kks.userInfo.gender,//性别
+									openid:opendids,//opendid
+									portrait:kks.userInfo.figureurl_qq_2,//头像
+									type:tyindex
+								}
+								localStorage.setItem('grxs', JSON.stringify(information));
+								window.location.href="binding.html";
+							}else if(tyindex==2){//微信
+								var information={
+									nickname:kks.userInfo.nickname,//昵称
+									gender:kks.userInfo.sex,//性别
+									openid:opendids,//opendid
+									portrait:kks.userInfo.headimgurl,//头像
+									type:tyindex
+								}
+								console.log(kks.userInfo.nickname);//昵称
+								console.log(sex);//性别
+								console.log(opendids);//opendid
+								console.log(kks.userInfo.headimgurl);//头像
+								localStorage.setItem('grxs', JSON.stringify(information));
+								window.location.href="binding.html";
+							}else{//微博
+								var sex="";
+								if(kks.userInfo.gender=="m"){
+									sex="男";
+								}else{
+									sex="女";
+								}
+								var information={
+									nickname:kks.userInfo.nickname,//昵称
+									gender:sex,//性别
+									openid:opendids,//opendid
+									portrait:kks.userInfo.headimgurl,//头像
+									type:tyindex
+								}
+								console.log(kks.userInfo.nickname);//昵称
+								console.log(sex);//性别
+								console.log(opendids);//opendid
+								console.log(kks.userInfo.headimgurl);//头像
+								localStorage.setItem('grxs', JSON.stringify(information));
+								window.location.href="binding.html";
+							}
 						}else{
 							console.log("错误");
 						}
 					},function(err){
 						console.log(err);
+						console.log(JSON.stringify(err));
 					})
 					authLogout();
 				}, function(e){

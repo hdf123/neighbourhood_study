@@ -248,7 +248,7 @@
 		</footer>
 		<script type="text/javascript">
 			$(function() {
-				var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
+				var userid = JSON.parse(localStorage.getItem('userId'));
 				ajaxGet("user/token/"+userid.token+"?token="+userid.token, 'get',{}, function(data) {
 					if(data.status==985){
 						window.location.href="../login/login.html";
@@ -282,7 +282,7 @@
 	document.addEventListener("error", function (e) {
 	  var elem = e.target;
 	  if (elem.tagName.toLowerCase() == 'img') {
-	    elem.src = "../../img/home_01.png";
+	    elem.src = "../../img/err.png";
 	  }
 	}, true);
 				$("#home").on("click", function() {

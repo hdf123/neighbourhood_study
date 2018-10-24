@@ -1,124 +1,192 @@
 {
-	"index.html": {
-		"refer": [
-			"html/login/login.html",
-			"html/home/home.html"
-		]
-	},
-	"html/home/home.html": {
-		"refer": [
-			"html/content/study.html",
-			"html/home/my.html",
-			"html/home/Introduction.html",
-			"html/home/community.html"
-		]
-	},
-	"html/login/login.html": {
-		"refer": [
-			"html/home/home.html",
-			"html/login/a1.html",
-			"html/login/jump.html",
-			"html/login/binding.html"
-		]
-	},
-	"html/content/study.html": {
-		"refer": [
-			"html/content/details.html",
-			"html/home/home.html",
-			"html/home/my.html",
-			"html/content/addbooks.html"
-		]
-	},
-	"html/content/details.html": {
-		"refer": [
-			"html/content/submit.html",
-			"html/content/study.html"
-		]
-	},
-	"html/content/submit.html": {
-		"refer": [
-			"html/content/settlement.html",
-			"html/content/details.html"
-		]
-	},
-	"html/content/settlement.html": {
-		"refer": [
-			"html/content/weixinpay.html",
-			"html/content/aa.html",
-			"html/content/thirds.html"
-		]
-	},
-	"html/content/thirds.html": {
-		"refer": [
-			"html/home/home.html"
-		]
-	},
-	"html/content/weixinpay.html": {
-		"refer": [
-			"html/home/home.html"
-		]
-	},
-	"html/home/my.html": {
-		"refer": [
-			"html/my/borrowing.html",
-			"html/content/study.html",
-			"html/home/home.html",
-			"html/my/my_wallet.html",
-			"html/my/order.html",
-			"html/my/cancellation.html",
-			"html/home/Found.html"
-		]
-	},
-	"html/my/borrowing.html": {
-		"refer": [
-			"html/home/my.html"
-		]
-	},
-	"html/my/my_wallet.html": {
-		"refer": [
-			"html/home/my.html"
-		]
-	},
-	"html/home/Introduction.html": {
-		"refer": [
-			"html/home/home.html"
-		]
-	},
-	"html/my/order.html": {
-		"refer": [
-			"html/home/my.html"
-		]
-	},
-	"html/my/cancellation.html": {
-		"refer": [
-			"html/login/login.html"
-		]
-	},
-	"html/login/jump.html": {
-		"refer": [
-			"html/login/login.html",
-			"html/login/binding.html"
-		]
-	},
-	"html/login/binding.html": {
-		"refer": [
-			"html/login/jump.html"
-		]
-	},
-	"html/home/Found.html": {
-		"refer": [
-			"html/home/community.html"
-		]
-	},
-	"html/home/community.html": {
-		"refer": [
-			"html/home/home.html",
-			"html/home/my.html"
-		]
-	},
-	"html/content/addbooks.html": {
-		"refer": [
-			"html/content/study.html"
-		]
-	}
+  "index.html": {
+    "refer": [
+      "html/login/login.html",
+      "html/home/home.html",
+      "a.html"
+    ],
+    "resources": []
+  },
+  "html/home/home.html": {
+    "refer": [
+      "html/content/study.html",
+      "html/home/my.html",
+      "html/home/Introduction.html",
+      "html/home/community.html",
+      "html/home/search.html"
+    ],
+    "resources": []
+  },
+  "html/login/login.html": {
+    "refer": [
+      "html/home/home.html",
+      "html/login/a1.html",
+      "html/login/jump.html",
+      "html/login/binding.html",
+      "html/login/registered.html",
+      "html/login/Forgot.html"
+    ],
+    "resources": []
+  },
+  "html/content/study.html": {
+    "refer": [
+      "html/content/details.html",
+      "html/home/home.html",
+      "html/home/my.html",
+      "html/content/addbooks.html"
+    ],
+    "resources": []
+  },
+  "html/content/details.html": {
+    "refer": [
+      "html/content/submit.html",
+      "html/content/study.html"
+    ],
+    "resources": []
+  },
+  "html/content/submit.html": {
+    "refer": [
+      "html/content/settlement.html",
+      "html/content/details.html"
+    ],
+    "resources": []
+  },
+  "html/content/settlement.html": {
+    "refer": [
+      "html/content/weixinpay.html",
+      "html/content/aa.html",
+      "html/content/thirds.html"
+    ],
+    "resources": []
+  },
+  "html/content/thirds.html": {
+    "refer": [
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/content/weixinpay.html": {
+    "refer": [
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/home/my.html": {
+    "refer": [
+      "html/my/borrowing.html",
+      "html/content/study.html",
+      "html/home/home.html",
+      "html/my/my_wallet.html",
+      "html/my/order.html",
+      "html/my/cancellation.html",
+      "html/home/Found.html",
+      "html/my/personal.html"
+    ],
+    "resources": []
+  },
+  "html/my/borrowing.html": {
+    "refer": [
+      "html/home/my.html"
+    ],
+    "resources": []
+  },
+  "html/my/my_wallet.html": {
+    "refer": [
+      "html/home/my.html"
+    ],
+    "resources": []
+  },
+  "html/home/Introduction.html": {
+    "refer": [
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/my/order.html": {
+    "refer": [
+      "html/home/my.html"
+    ],
+    "resources": []
+  },
+  "html/my/cancellation.html": {
+    "refer": [
+      "html/login/login.html"
+    ],
+    "resources": []
+  },
+  "html/login/jump.html": {
+    "refer": [
+      "html/login/login.html",
+      "html/login/binding.html"
+    ],
+    "resources": []
+  },
+  "html/login/binding.html": {
+    "refer": [
+      "html/login/jump.html",
+      "html/home/home.html",
+      "html/login/registered.html",
+      "html/login/login.html"
+    ],
+    "resources": []
+  },
+  "html/home/Found.html": {
+    "refer": [
+      "html/home/community.html",
+      "html/home/my.html",
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/home/community.html": {
+    "refer": [
+      "html/home/home.html",
+      "html/home/my.html",
+      "html/home/Found.html"
+    ],
+    "resources": []
+  },
+  "html/content/addbooks.html": {
+    "refer": [
+      "html/content/study.html"
+    ],
+    "resources": []
+  },
+  "html/login/registered.html": {
+    "refer": [
+      "html/login/login.html",
+      "html/login/binding.html"
+    ],
+    "resources": []
+  },
+  "html/login/Forgot.html": {
+    "refer": [
+      "html/login/login.html",
+      "html/login/Forgots.html"
+    ],
+    "resources": []
+  },
+  "html/my/personal.html": {
+    "refer": [
+      "html/home/my.html"
+    ],
+    "resources": []
+  },
+  "html/home/search.html": {
+    "refer": [
+      "html/home/home.html"
+    ],
+    "resources": []
+  },
+  "html/login/Forgots.html": {
+    "refer": [
+      "html/login/login.html"
+    ],
+    "resources": []
+  },
+  "a.html": {
+    "refer": [
+      "html/login/login.html"
+    ]
+  }
 }

@@ -278,7 +278,6 @@
 $(function(){
 	var image="",images="";
 	var userid = JSON.parse(localStorage.getItem('userId'));
-	var logs = JSON.parse(localStorage.getItem('logs'));
 	var obUrl = ''
 	$("#clipArea").photoClip({
 		width: 300,
@@ -344,11 +343,11 @@ $(function(){
         }
     });
 	$("#save").click(function(){//保存
+		console.log(userid.token);
 //		id=用户id		&nickname=昵称	&gender=性别		&age=年龄		&profession=职业		&motto=座右铭
 //		&address=地址		&image=头像		&name=书房名		&images=书房照片
 //昵称、性别、年龄、职业、
 		image=$('#logox>img').attr("src");//头像
-		console.log(image);
 		var str=$('.sd>div img');//书房
 		for(var i=0;i<str.length;i++){
 			if(str[i].src.indexOf('add_01.png')==-1){
@@ -402,30 +401,26 @@ $(function(){
 					if(data.status==985){
 						window.location.href="../login/login.html";
 					}
-					var parameter={
-						phone:logs.phone,
-						password:logs.password
-					}
-					ajaxGet( "user/login",'post',parameter,function(data){//重新登陆更新个人资料
-						localStorage.setItem('TT_TOKEN', JSON.stringify(data.data));
-						var tokens=data.data;
-						ajaxGet("user/token/"+data.data+"?token="+data.data,'get',{}, function(data){//重新获取个人信息
-							var data=data.data;
-							var datas={//信息传递
-								token:tokens,
-								userId:data.user.id,//用户id
-								phone:data.user.phone,//用户手机号
-								portrait:data.image2//用户头像
-							}
-							localStorage.setItem('userId', JSON.stringify(datas));//个人信息
-							var userid = JSON.parse(localStorage.getItem('userId'));//登陆id
-							window.location.href="../home/my.html";
-						},function(err) {
-							console.log(err);
-						})
-					},function(err){
+					
+					console.log(userid.token);
+					
+					ajaxGet("user/token/"+userid.token+"?token="+userid.token,'get',{}, function(data){//重新获取个人信息
+						var data=data.data;
+						console.log(userid.token);
+						var datas={//信息传递
+							token:userid.token,
+							userId:data.user.id,//用户id
+							phone:data.user.phone,//用户手机号
+							portrait:data.image2//用户头像
+						}
+						localStorage.setItem('userId', JSON.stringify(datas));//个人信息
+						window.location.href="../home/my.html";
+					},function(err) {
 						console.log(err);
 					})
+						
+						
+						
 				},function(err){
 					console.log(err);
 				})

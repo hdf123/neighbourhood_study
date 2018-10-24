@@ -387,11 +387,11 @@
 			</div>
 		</footer>
 <script type="text/javascript">
+	$(".menu").hide();
 	$(function(){
 		$(document).ready(function(){
 			$("#loading").load("../loading.html");
 		})
-		$(".menu").hide();
 		var _token = JSON.parse(localStorage.getItem('TT_TOKEN'));
 		var mySwiper2 = new Swiper ('#swiper2',{
 		    direction: 'horizontal',
@@ -413,12 +413,12 @@
 		})
 //获取个人信息
 		ajaxGet("user/token/"+_token+"?token="+_token,'get',{}, function(data) {
-//			console.log(data);
 			if(data.status==985){
 				window.location.href="../login/login.html";
 			}else if(data.status==200){
 				$("#loading").hide();
 				var data = data.data;
+				console.log(JSON.stringify(data));
 				if(data.image2==null){
 					window.location.href="../my/personal.html";
 				}
@@ -459,6 +459,7 @@
 						swipers.html(cumulatives);
 					}
 					var mySwiper1 = new Swiper ('#swiper1',{//推荐recommend
+						loop:true,
 						autoplay: true,//可选选项，自动滑动
 					    direction: 'horizontal',
 					})
@@ -601,7 +602,7 @@
 	document.addEventListener("error", function (e) {
 	  var elem = e.target;
 	  if (elem.tagName.toLowerCase() == 'img') {
-//	    elem.src = "../../img/home_17.png";
+	    elem.src = "../../img/err.png";
 	  }
 	}, true);
 //查看更多

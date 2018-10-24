@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="css/login.css"/>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../../js/ajax.js"></script>
+		<script type="text/javascript" src="../../js/md5.js"></script>
 		<script src="../../js/rem.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/children.js" type="text/javascript" charset="utf-8"></script>
 	</head>
@@ -47,7 +48,7 @@
 			padding:0 0.3rem;
 		  	width:85%;
 		  	height:100%;
-		  	font: 500 0.64rem AdobeHeitiStd-Regular;
+		  	font:500 0.64rem AdobeHeitiStd-Regular;
 		  	color: #999999;
 		  	border: none;
 		  	outline: none;
@@ -71,13 +72,53 @@
 		  background-color: #fee74a;
 		  border-radius: 1rem;
 		}
-		
-		.login_p {
+		.login_p{
 		  color: white;
 		  font-size:0.64rem;
 		  margin-top: 1rem;
 		  text-align: right;
 		}
+		.login_p>span{
+			padding:0.2rem;
+		}
+    .wdows{
+        width:100%;
+        height:100%;
+        display: flex;
+        justify-content: center;
+        position:fixed;
+        top:0;
+        left:0;
+        background: rgba(128,128,128,0.8);
+    }
+    .wdows>div{
+        width:75%;
+        background:white;
+        border-radius:0.2rem;
+        position:absolute;
+        top:20%;
+        left:12.5%;
+        padding:0.2rem 0 0.5rem 0;
+    }
+    .conflict{
+    	width:100%;
+    	padding:0.2rem 0.3rem 0.5rem 0.3rem;
+    	/*background:gainsboro;*/
+    	margin-bottom:0.5rem;
+    	font:500 0.76rem AdobeHeitiStd-Regular;
+    	border-bottom:1px solid #eeeeee;
+    }
+    .choose{
+    	display: flex;
+    	justify-content: space-around;
+    	text-align: center;
+    	
+    }
+    .choose>div{
+    	width:30%;
+    	border:1px solid #eeeeee;
+    	border-radius:0.1rem;
+    }
 	</style>
 	<body>
 		<div class="logins">
@@ -93,11 +134,11 @@
 			<div>
 				<div class="logind_childs">
 					<div><img src="../../img/login_3.png" class="login_3" alt="" /></div>
-					<input type="text" id="tel" placeholder="请输入手机号" class="login_inputs" value=""/>
+					<input type="text" id="tel" placeholder="请输入手机号" class="login_inputs" value="15137102387"/>
 				</div>
 				<div class="logind_childs">
 					<div><img src="../../img/login_4.png" class="login_4" alt="" /></div>
-					<input type="text" id="pass" placeholder="请输入密码" class="login_inputs"/>
+					<input type="password" id="pass" placeholder="请输入密码" class="login_inputs" value="ad123456"/>
 				</div>
 			</div>
 			<div id="loging">一键绑定</div>
@@ -105,41 +146,84 @@
 				<span>立即注册</span>
 			</div>
 		</div>
+		<div class="wdows">
+			<div>
+				<div class="conflict"></div>
+				<div class="choose">
+					<div>是</div>
+					<div>否</div>
+				</div>
+			</div>
+		</div>
 	</body>
 	<script type="text/javascript">
-		/*$("#loging").click(function(){
-			var pho = $('#tel').val(),pass = $('#pass').val();
-			if(pho==""||pass==""){
-				alert("填写不可为空");
-			}else{
-				var df=/^\d+$/;//正整数包括0
-				if(!df.test(pho)){
-					alert("账号格式错误！");
+		$(function(){
+			$(".wdows").hide();
+			var grxs = JSON.parse(localStorage.getItem('grxs'));
+			$("#loging").click(function(){
+				var pho = $('#tel').val(),pass = $('#pass').val();
+				if(pho==""||pass==""){
+					alert("填写不可为空");
 				}else{
-					window.location.href="login.html";
+					var df=/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;//手机号正则
+					df.test(pho)?funs():alert("账号格式错误！");
+					function funs(){
+						pass = $('#pass').val()
+						pass=hex_md5(pass);
+						var datask={
+							openID:grxs.openid,//openid
+							niceName:grxs.openid,//昵称
+							portrait:grxs.portrait,//头像
+							gender:grxs.gender,//性别
+							phone:$("#tel").val(),
+							password:pass,
+							type:grxs.type
+						}
+						console.log(datask.phone);
+						console.log(datask.password);
+						ajaxGet("third/party/account/binding",'post',datask,function(data){
+							console.log(JSON.stringify(data));
+							if(data.status==200){//保存token，跳转首页
+								localStorage.setItem('TT_TOKEN', JSON.stringify(data.data));
+								window.location.href="../home/home.html";
+								console.log(JSON.stringify(data));
+							}else if(data.status==300){//账号没注册或输入错误
+								alert("300:"+data.msg);
+							}else if(data.status==400){//已经绑定过同类型的第三方账号不能继续绑定
+//								alert("400:"+data.msg);
+								$(".conflict").html(data.msg)
+								$(".wdows").fadeIn(300,function(){
+									$(".choose>div:eq(0)").click(function(){
+										ajaxGet("third/party/update/binding/account",'post',datask,function(data){
+											console.log(data);
+											console.log(JSON.stringify(data));
+											if(data.status==200){
+												localStorage.setItem('TT_TOKEN', JSON.stringify(data.data));
+												window.location.href="../home/home.html";
+											}else{
+												alert(data.msg);
+											}
+											
+										},function(err){
+											console.log(err);
+										})
+									})
+									$(".choose>div:eq(1)").click(function(){
+										$(".wdows").hide();
+									})
+								});
+							}else{
+								alert("网络异常");
+							}
+						},function(err){
+							console.log(err);
+						})
+					}
 				}
-			}
-		})*/
-		$("#loging").click(function(){
-			var datask={
-				openID:"62ADECBC5F09705D884F44ABFBC2CEA9",//openid
-				niceName:"111",//昵称
-				portrait:"111",//头像
-				gender:"女",//性别
-				phone:"15137102387",
-				password:"ad123456",
-				type:1
-			}
-			ajaxGet("third/party/binding",'post',datask,function(data){
-				console.log(JSON.stringify(data));//保存token，跳转首页
-			},function(err){
-				console.log(err);
+			})
+			$(".login_p>span").click(function(){//一键注册
+				window.location.href="registered.html";
 			})
 		})
-
-		
-		
-//发送请求绑定账号third/party/binding
-
 	</script>
 </html>
