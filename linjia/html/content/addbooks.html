@@ -280,11 +280,11 @@
   	</form>
   	<div class="resds">
 	  	<div id="monyk">*图书押金：
-	  		<input type="number" placeholder="" onkeyup="num(this)" value="0"/>
+	  		<input type="number" placeholder="" onkeyup="num(this)" value="1" id="money"/>
 	  	</div>
 	  	<div id="priced">
 	  		*请输入价格:
-	  		<input type="number" placeholder="" onkeyup="num(this)" id="monys" value="0"/>
+	  		<input type="number" placeholder="" onkeyup="num(this)" id="monys" value="0.01"/>
 	  	</div>
   	</div>
     <a href="#" id="save" >保存</a>
@@ -332,6 +332,16 @@
 	    		$("#monyk").css({"display":"none"});
 	    	}
 	    })
+		$("#money").blur(function(){
+			if($(this).val()==""){
+				$(this).val(1);
+			}
+		})
+		$("#monys").blur(function(){
+			if($(this).val()==""){
+				$(this).val(0.01);
+			}
+		})
 		$("#save").click(function(){//保存
 			var str=$('.sd>div img');//书房
 			for(var i=0;i<str.length;i++){
@@ -357,6 +367,7 @@
 				pages:$("#pages").val(),//总页数
 				imges:images,//图书图片
 				price:moneys,//图书价格...
+				deposit:"100",//押金
 				classification:$("#selects option:selected").val(),//图书类型
 				type:$('#hair input[name="fruit"]:checked').val()//商品类型...
 			}

@@ -7,7 +7,7 @@
 	"id": "H52A3BBDF",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "邻家书房",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "6.0.2.0",/*应用版本名称*/
+		"name": "6.0.2.1",/*应用版本名称*/
 		"code": ""
 	},
 	"description": "",/*应用描述信息*/
@@ -58,8 +58,19 @@
 			"plugins":{
 				"oauth":{
 					"qq":{
-						"appid":"101504887",
-						"description":"QQd登录"
+						"appid":"101503113",
+						"description":"QQ登录"
+					},
+					"weixin":{
+						"appid":"wx14c59f71eb67f9fe",
+						"appsecret":"",
+						"description":"微信登录"
+					},
+					"sina":{
+						"appkey":"384885204",
+						"appsecret": "bf083410aee22b501fdb3e72a9a44f60",
+						"redirect_uri":"http://*****************",
+						"description":"新浪微博登录"
 					}
 				}
 			},
@@ -344,7 +355,8 @@
 				"refer": [
 					"html/home/community.html",
 					"html/home/my.html",
-					"html/home/home.html"
+					"html/home/home.html",
+					"html/content/study.html"
 				],
 				"priority": 0
 			},
@@ -404,7 +416,8 @@
 			"a.html": {
 				"resources": [],
 				"refer": [
-					"html/login/login.html"
+					"html/login/login.html",
+					"html/home/home.html"
 				],
 				"priority": 0
 			}

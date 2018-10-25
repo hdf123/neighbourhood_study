@@ -70,38 +70,51 @@
 			font:normal 0.64rem AdobeHeitiStd-Regular;
 		}
 		.sub_add{
+			width:100%;
 			display: flex;
+			justify-content: space-between;
 			padding:0.2rem 1rem;
 			margin:1rem 0 0;
 			background-color:#eeeeee;
 			font:500 1rem AdobeHeitiStd-Regular;
 		}
 		.sub_add>div:nth-child(1){
-			width:15%;
+			width:2.5rem;
+			height:2.8rem;
 			overflow: hidden;
 		}
 		.sub_add>div:nth-child(1)>img{
 			width:100%;
+			height:100%;
 		}
 		.sub_add>div:nth-child(2){
+			width:3.5rem;
+			height:2.8rem;
+			font:normal 0.52rem AdobeHeitiStd-Regular;
+			margin-left:0.5rem;
+			overflow:hidden; /*超出隐藏*/
+        	display:-webkit-box; /*将对象作为弹性伸缩盒子模型显示。*/
+        	-webkit-box-orient:vertical;/*从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式）*/
+        	-webkit-line-clamp:4; /*超出2行用省略号表示*/
+			word-wrap:break-word
+			border:1px solid red;
+		}
+		.sps{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		.sps>div:nth-child(1){
+			font:normal 0.4rem AdobeHeitiStd-Regular;
+		}
+		.sps>div:nth-child(2){
 			font:normal 0.64rem AdobeHeitiStd-Regular;
-			margin-left:1rem;
-			width:40%;
 		}
-		.sub_add>div:nth-child(3){
-			width:30%;
-			padding-top:0.5rem;
-			font:500 0.64rem AdobeHeitiStd-Regular;
-		}
-		.sub_add>div:nth-child(3)>div:nth-child(1){
-			color: #fd3f05;
-			font:normal 0.64rem AdobeHeitiStd-Regular;
-		}
-		.sub_add>div:nth-child(3)>div:nth-child(2){
+		.sps>div:nth-child(3){
 			font:normal 0.512rem AdobeHeitiStd-Regular;
 		}
-		.sub_add>div:nth-child(3)>div:nth-child(2)>span{
-			color: red;
+		.sps>div>span{
+			color:red;
 		}
 		.sub_add>div:nth-child(4){
 			width:10%;
@@ -158,7 +171,8 @@
 						<div class="bookname">《狼王菠萝》</div>
 						<div class="author">放大书法</div>
 					</div>
-					<div>
+					<div class="sps">
+						<div>押金<span class="yjs">1111</span></div>
 						<div>￥<span id="money">28.30</span></div>
 						<div>共（<span class="nums">1</span>）件</div>
 					</div>
@@ -177,7 +191,18 @@
 		$(".picture").attr("src",borrows.image);
 		$(".bookname").html("《"+borrows.bookName+"》");
 		$(".author").html(borrows.author);
-		$("#money").html(borrows.price);
+		
+		var yjs="";
+		if(borrows.loanDeposit==""){
+			yjs="";
+		}else{
+			yjs='<div>押金：<span class="yjs">'+borrows.loanDeposit+'</span></div>';
+		}
+		$(".sps").html(yjs+'<div>￥<span id="money">'+borrows.price+'</span></div>'
+						+'<div>共（<span class="nums">1</span>）件</div>');
+		
+		
+		
 //提交订单信息
 		ajaxGet("book/details?bookId="+borrows.itemId,'get',{token:userid.token},function(data){
 			if(data.status==985){
@@ -192,8 +217,10 @@
 				var transfer={
 					token:userid.token,							//token
 					userId:userid.userId,						//买家id
-//					payment:0.01,								//实付金额
 					payment:$("#money").html(),					//实付金额
+					
+					orderDeposit:$(".yjs").html(),				//订单押金
+					
 					receiverAreaName:sds,						//买家地址
 					receiverMobile:$(".phones").val(),			//收货手机号
 					receiver:$(".names").val(),					//收货人姓名
@@ -202,11 +229,9 @@
 					
 					itemId:borrows.itemId,						//商品id
 					bookName:borrows.bookName,					//书名
-//					price:0.01,									//图书单价
 					price:borrows.price,						//图书单价
 					image:borrows.image,						//图书图片
 					num:$(".nums").html(),						//购买数量
-//					totalFee:0.01,								//商品总金额
 					totalFee:$("#money").html(),				//商品总金额
 				}
 				if($(".names").val()==""||$(".phones").val()==""||$("#J_Address").val()==""||$(".detaileds").val()==""){
@@ -220,11 +245,13 @@
 								window.location.href="../login/login.html";
 							}
 							var data=data.data;
-							console.log(data);
 							var orderId={
 								orderId:data.orderId,
+								payment:data.payment,
+								yjs:borrows.loanDeposit,
 								borrow:transfer
 							}
+							console.log(orderId)
 							localStorage.setItem('orderId', JSON.stringify(orderId));
 							window.location.href="settlement.html";
 						},function(err) {

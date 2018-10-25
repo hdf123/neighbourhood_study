@@ -262,12 +262,12 @@
 		var userid = JSON.parse(localStorage.getItem('userId'));//用户id 
 		var lends = JSON.parse(localStorage.getItem('lends'));//书本id
 		$(".jsd").hide();
+		var yjs="";
 		ajaxGet("book/details?bookId="+lends,'get',{token:userid.token},function(data){
 			if(data.status==985){
 				window.location.href="../login/login.html";
 			}
 			var data=data.data;
-			console.log(data);
 			$(".buddy").html('<div>'
 								+'<div>'
 									+'<img src='+data.user.image+' />'
@@ -314,15 +314,17 @@
 									+'</div>'
 								+'</div>');
 			if(data.loanPrice==undefined){
+				yjs="";
 				var money=data.sellPrice/100;
 				$(".buddy_dets").append('<p>出售:'
 											+'<span>'+money+'</span>元'
 										+'</p>');
 			}else{
 				$(".jsd").show();
+				yjs=data.loanDeposit;
 				var money=data.loanPrice/100;
 				$(".buddy_dets").append('<p>出借:<span>'+money+'</span>元/天</p>'
-										+'<p>押金:<span>'+money+'</span>元</p>');
+										+'<p>押金:<span>'+yjs+'</span>元</p>');
 			}
 //商品数量
 			$(".icon-jianshao").on("click",function(){
@@ -358,8 +360,9 @@
 					price:jgs,								//单价
 					image:imges[0],							//图书图片
 					author:data.book.author,				//图书作者
+					loanDeposit:yjs							//押金
 				}	
-				console.log(borrow.price);
+				console.log(borrow);
 				
 				localStorage.setItem('borrows',JSON.stringify(borrow));	
 				window.location.href="submit.html";

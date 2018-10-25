@@ -182,7 +182,7 @@
 	<body>
 		<header class="headers">
 			<div>
-				<div class="iconfont icon-houtui" onclick="javascript:history.back(-1);">
+				<div class="iconfont icon-houtui" onclick="previous()">
 					<span id="lends"></span>
 				</div>
 				<div id="buddy" class="iconfont icon-wode-active"></div>
@@ -296,7 +296,10 @@
 			$("#buddy").on("click",function(){
 				window.location.href="speaks.html";
 			})
-			
+//上一页
+			function previous(){
+				window.location.href="../my/my_friends.html";
+			}
 		})
 	</script>
 </html>

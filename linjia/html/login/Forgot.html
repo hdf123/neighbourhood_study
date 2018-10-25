@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>忘记密码</title>
+		<link rel="stylesheet" href="../../css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="css/login.css"/>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../../js/ajax.js"></script>
@@ -91,6 +92,9 @@
 		  background-color: #fee74a;
 		  border-radius: 0.8rem;
 		}
+		.icon-houtui{
+			
+		}
 	</style>
 	<body>
 		<header class="logins">
@@ -100,6 +104,7 @@
 			<div class="logins-child">
 				<img src="../../img/login_2.png" alt="" />
 			</div>
+			<div class="iconfont icon-houtui" onclick="funsk()"></div>
 		</header>
 		<div class="logind">
 			<div>
@@ -181,5 +186,8 @@
 				})
 			}
 		})
+		function funsk(){
+			window.location.href="login.html";
+		}
 	</script>
 </html>

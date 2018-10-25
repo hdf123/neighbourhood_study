@@ -59,7 +59,13 @@
 		</section>
 <script type="text/javascript">
 	$("#cancellation").on("click",function(){
-		localStorage.setItem('logs', JSON.stringify());
+		var logs = JSON.parse(localStorage.getItem('logs'));//是否有登录
+		var parameter={
+			phone:logs.pho,
+			password:logs.pass,
+			kkk:9
+		}
+		localStorage.setItem('logs', JSON.stringify(parameter));
 		window.location.href="../login/login.html";
 	})
 </script>

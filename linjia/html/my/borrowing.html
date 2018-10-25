@@ -372,19 +372,21 @@
 				$(".popupsd>div:nth-child(1)").hide();
 			})
 //已还书
-			var yesd="";
+			var yesd="",loanids="";
 			$(".bor_tab .borrows:eq(0)").on("click",".brodele>p",function(){
 				var bookname=$(this).closest(".brod").data("bookname");//书名
-				yesd=$(this).closest(".brod").data("ids");//借书人id
+				loanids=$(this).closest(".brod").data("loanid");//借书人id
+				yesd=$(this).closest(".brod").data("ids");//图书id
+				console.log(loanids);
 				$(".popupsd").show();
 				$(".confirms").show();
 				$(".ords").html("书名："+bookname);
-				console.log(yesd);
 			})
 //确认还书
 			$(".confirmg").click(function(){
 				var quer={
 					token:userid.token,
+					loanId:loanids,
 					bookId:yesd
 				}
 				ajaxGet("my/yes/return",'post',quer,function(data){

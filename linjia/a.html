@@ -68,10 +68,12 @@
 	  <div class="swiper-pagination"></div>
 	</div>
 <script type="text/javascript">
-	var two = JSON.parse(localStorage.getItem('one'));
-	var logs = JSON.parse(localStorage.getItem('logs'));
+	var two = JSON.parse(localStorage.getItem('one'));//是否第一次下载
+	var logs = JSON.parse(localStorage.getItem('logs'));//是否有登录
+	console.log(two);
+	console.log(JSON.stringify(logs));
 	two!=null?func():funs();//是否第一次下载app
-	function funs(){//第一次登陆app
+	function funs(){
 		var mySwiper = new Swiper('#swiper1',{
 			autoplay: false,//可选选项，自动滑动
 			pagination: {
@@ -84,8 +86,8 @@
 		})
 	}
 	function func(){
-		logs!=null?funk():window.location.href="html/login/login.html";//是否有登陆记录
-		function funk(){
+		logs.kkk==6?funk():fungs();//是否有登陆
+		function funk(){//登录过，去首页
 			var parameter={
 				phone:logs.phone,
 				password:logs.password
@@ -96,6 +98,9 @@
 			},function(err){
 				console.log(err);
 			})
+		}
+		function fungs(){//退出了，去登录
+			window.location.href="html/login/login.html";
 		}
 	}
 		

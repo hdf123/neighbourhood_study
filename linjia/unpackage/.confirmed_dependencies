@@ -134,7 +134,8 @@
     "refer": [
       "html/home/community.html",
       "html/home/my.html",
-      "html/home/home.html"
+      "html/home/home.html",
+      "html/content/study.html"
     ],
     "resources": []
   },
@@ -186,7 +187,8 @@
   },
   "a.html": {
     "refer": [
-      "html/login/login.html"
+      "html/login/login.html",
+      "html/home/home.html"
     ]
   }
 }
