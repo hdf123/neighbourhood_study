@@ -68,11 +68,11 @@
 	  <div class="swiper-pagination"></div>
 	</div>
 <script type="text/javascript">
-	var two = JSON.parse(localStorage.getItem('one'));//是否第一次下载
+	var one = JSON.parse(localStorage.getItem('one'));//是否第一次下载
 	var logs = JSON.parse(localStorage.getItem('logs'));//是否有登录
-	console.log(two);
+	console.log(one);
 	console.log(JSON.stringify(logs));
-	two!=null?func():funs();//是否第一次下载app
+	one==0?func():funs();//是否第一次下载app
 	function funs(){
 		var mySwiper = new Swiper('#swiper1',{
 			autoplay: false,//可选选项，自动滑动

@@ -624,7 +624,8 @@
 	})
 //banner
 	$("#swiper1 .swiper-slide").click(function(){
-		var index=$(this).index();
+		var index=$(this).index()-1;
+		console.log(index);
 		if(index==0){//最新活动
 //			window.location.href="latest_activity.html";
 		}else if(index==1){//公司介绍

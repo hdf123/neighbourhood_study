@@ -167,11 +167,14 @@
 <script>
 	$(function(){
 		var one=0;
+		var parameter={
+			phone:3,
+			password:3,
+			kkk:3
+		}
+		localStorage.setItem('logs', JSON.stringify(parameter));
 		localStorage.setItem('one', JSON.stringify(one));
 		$("#login").on("click",function(){
-			funcs();
-		})
-		function funcs(){
 			var pho = $('#tel').val();
 			var pass=$("#pass").val();
 			pho==""||pass==""?alert("填写不可为空"):funelse();//判断输入是否为空
@@ -200,7 +203,7 @@
 					console.log(err);
 				})
 			}
-		}
+		})
 //第三方登录
 		var tyindex=0;
 		// 获取用户头像标签

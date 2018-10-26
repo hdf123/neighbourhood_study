@@ -63,13 +63,13 @@
 					},
 					"weixin":{
 						"appid":"wx14c59f71eb67f9fe",
-						"appsecret":"",
+						"appsecret":"66ea8a4ec3a47330436b435265db80a0",
 						"description":"微信登录"
 					},
 					"sina":{
 						"appkey":"384885204",
 						"appsecret": "bf083410aee22b501fdb3e72a9a44f60",
-						"redirect_uri":"http://*****************",
+						"redirect_uri":"http://open.weibo.com/apps/384885204/privilege/oauth",
 						"description":"新浪微博登录"
 					}
 				}
