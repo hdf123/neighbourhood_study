@@ -455,7 +455,7 @@ var imgsource ='';
 		}
 
 
-		function resize() {
+		function resize(){
 			hideAction($container, function() {
 				containerWidth = $container.width();
 				containerHeight = $container.height();

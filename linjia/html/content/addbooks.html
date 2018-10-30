@@ -298,30 +298,32 @@
 			console.log(as);
 		})
 		var userid = JSON.parse(localStorage.getItem('userId'));
-		var images="";
-	    $(".imgFile").change(function () {//书房
+		var images="",ask=false;
+	    $(".imgFile").change(function () {//书籍封面
 	       var index=$(this).parent().parent().index();
+	       var base="";
 	        //调用函数调取图片地址
-	        var objUrl=this.files;
-	        for (var i = 0; i < objUrl.length; i++){
-	            var reader = new FileReader();
-	            reader.readAsDataURL(objUrl[i]);
-	            reader.onload = function(e){
-	             	var base=this.result;
-	             	var dataObj={
-	             		token:userid.token,
-	             		base64:base,
-	             	}
-					ajaxGet("base64/upload",'post',dataObj,function(data){
-						if(data.status==985){
-							window.location.href="../login/login.html";
-						}
-						$('.sd>div').eq(index).find("img").attr("src",data.data);
-					},function(err){
-						console.log(err);
-					})
-	            }
-	        }
+	        var objUrl=this.files[0];
+	        var reader = new FileReader();
+	        reader.readAsDataURL(objUrl);
+            reader.onload = function(e){
+             	base=this.result;
+	         	var dataObj={
+	         		token:userid.token,
+	         		base64:base,
+	         	}
+				ajaxGet("base64/upload",'post',dataObj,function(data){
+					if(data.status==985){
+						window.location.href="../login/login.html";
+					}else if(data.status==200){
+						ask=true;
+					}
+					console.log(ask);
+					$('.sd>div').eq(index).find("img").attr("src",data.data);
+				},function(err){
+					console.log(err);
+				})
+           	}
 	    });
 	    $("#hair input:radio[name='fruit']").change(function(){
 	    	var sd=$(this).val();
@@ -343,12 +345,13 @@
 			}
 		})
 		$("#save").click(function(){//保存
-			var str=$('.sd>div img');//书房
+			console.log(ask);
+			var str=$('.sd>div img');//书籍封面
 			for(var i=0;i<str.length;i++){
 				if(str[i].src.indexOf('add.png')==-1){
 					images+=str[i].src+",";
 				}else{
-					console.log("111");
+					alert("请选择图书封面！");
 				}
 			}
 			images=images.substring(0,images.length-1);
@@ -371,7 +374,7 @@
 				classification:$("#selects option:selected").val(),//图书类型
 				type:$('#hair input[name="fruit"]:checked').val()//商品类型...
 			}
-			if($("#bookname").val()==""||$("#author").val()==""||$("#isbn").val()==""||images==""||moneys==""||$('#hair input[name="fruit"]:checked').val()==""){
+			if($("#bookname").val()==""||$("#author").val()==""||$("#isbn").val()==""||images==""||moneys==""||$('#hair input[name="fruit"]:checked').val()==""||ask==false){
 				alert("信息填写不完整！");
 			}else{
 				ajaxGet( "book/add/book",'post',transfer,function(data){
