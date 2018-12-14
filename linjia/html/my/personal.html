@@ -220,7 +220,7 @@
 							<button id="clipBtn">截取</button>
 						</div>
 						<div id="view"></div>
-					</article>    
+					</article>
 		        </div>
 		        <div class="ffg">
 		            <div>
@@ -301,8 +301,6 @@ $(function(){
 	$("#nickname").blur(function(){
 		$("#nickname").val().length>4?funks():console.log("昵称验证通过");
 		var sd=$("#nickname").val().length;
-		console.log(sd);
-		
 	})
 	function funks(){
 		alert("长度超出限制，昵称长度为4位以内");
@@ -400,9 +398,6 @@ $(function(){
 					if(data.status==985){
 						window.location.href="../login/login.html";
 					}
-					
-					console.log(userid.token);
-					
 					ajaxGet("user/token/"+userid.token+"?token="+userid.token,'get',{}, function(data){//重新获取个人信息
 						var data=data.data;
 						console.log(userid.token);
